@@ -1,0 +1,344 @@
+{
+  "dataset": "improved_uav_missions.json",
+  "num_missions": 10,
+  "results": {
+    "Single-Metric": [
+      {
+        "mission_id": "MISSION-0003",
+        "prediction": "Safe",
+        "score": 90.08754627362012,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0013",
+        "prediction": "Borderline",
+        "score": 71.86749743170643,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0022",
+        "prediction": "Safe",
+        "score": 88.98152978721608,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0020",
+        "prediction": "Safe",
+        "score": 91.76147120655466,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0002",
+        "prediction": "Safe",
+        "score": 80.66265136203216,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0012",
+        "prediction": "Borderline",
+        "score": 73.54124889808062,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0027",
+        "prediction": "Safe",
+        "score": 82.72259015599664,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0015",
+        "prediction": "Safe",
+        "score": 80.94473969395173,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0028",
+        "prediction": "Safe",
+        "score": 89.58279029303989,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0018",
+        "prediction": "Safe",
+        "score": 81.75536860654864,
+        "issues": []
+      }
+    ],
+    "Fixed-Weight": [
+      {
+        "mission_id": "MISSION-0003",
+        "prediction": "Safe",
+        "score": 83.1449833199903,
+        "issues": [
+          "Poor coordination quality (score: 37.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0013",
+        "prediction": "Borderline",
+        "score": 68.96831711152394,
+        "issues": [
+          "Poor coordination quality (score: 30.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0022",
+        "prediction": "Safe",
+        "score": 81.82399138496625,
+        "issues": [
+          "Poor coordination quality (score: 28.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0020",
+        "prediction": "Safe",
+        "score": 84.41395682731859,
+        "issues": [
+          "Poor coordination quality (score: 36.1)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0002",
+        "prediction": "Borderline",
+        "score": 76.67657945901126,
+        "issues": [
+          "Poor coordination quality (score: 31.1)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0012",
+        "prediction": "Borderline",
+        "score": 72.00692520568607,
+        "issues": [
+          "Poor coordination quality (score: 48.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0027",
+        "prediction": "Borderline",
+        "score": 75.54826545304597,
+        "issues": [
+          "Poor coordination quality (score: 25.6)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0015",
+        "prediction": "Borderline",
+        "score": 77.86084164607136,
+        "issues": [
+          "Poor coordination quality (score: 41.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0028",
+        "prediction": "Safe",
+        "score": 83.4755231576965,
+        "issues": [
+          "Poor coordination quality (score: 43.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0018",
+        "prediction": "Borderline",
+        "score": 76.24947739995598,
+        "issues": [
+          "Poor coordination quality (score: 29.0)"
+        ]
+      }
+    ],
+    "Single-Agent-LLM": [
+      {
+        "mission_id": "MISSION-0003",
+        "prediction": "Borderline",
+        "score": 70.0,
+        "issues": [
+          "Poor coordination quality (score: 37.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0013",
+        "prediction": "Borderline",
+        "score": 65.0,
+        "issues": [
+          "Poor coordination quality (score: 30.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0022",
+        "prediction": "Borderline",
+        "score": 60.0,
+        "issues": [
+          "Poor coordination quality (score: 28.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0020",
+        "prediction": "Borderline",
+        "score": 70.0,
+        "issues": [
+          "Poor coordination quality (score: 36.1)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0002",
+        "prediction": "Borderline",
+        "score": 65.0,
+        "issues": [
+          "Poor coordination quality (score: 31.1)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0012",
+        "prediction": "Borderline",
+        "score": 65.0,
+        "issues": [
+          "Poor coordination quality (score: 48.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0027",
+        "prediction": "Borderline",
+        "score": 65.0,
+        "issues": [
+          "Poor coordination quality (score: 25.6)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0015",
+        "prediction": "Borderline",
+        "score": 62.0,
+        "issues": [
+          "Poor coordination quality (score: 41.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0028",
+        "prediction": "Borderline",
+        "score": 68.0,
+        "issues": [
+          "Poor coordination quality (score: 43.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0018",
+        "prediction": "Risky",
+        "score": 70.0,
+        "issues": [
+          "Poor coordination quality (score: 29.0)"
+        ]
+      }
+    ],
+    "Multi-Agent-Debate": [
+      {
+        "mission_id": "MISSION-0003",
+        "prediction": "Borderline",
+        "score": 50.0,
+        "issues": [
+          "Poor coordination quality (score: 37.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0013",
+        "prediction": "Borderline",
+        "score": 50.0,
+        "issues": [
+          "Poor coordination quality (score: 30.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0022",
+        "prediction": "Safe",
+        "score": 79.0,
+        "issues": [
+          "Poor coordination quality (score: 28.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0020",
+        "prediction": "Safe",
+        "score": 50.0,
+        "issues": [
+          "Poor coordination quality (score: 36.1)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0002",
+        "prediction": "Safe",
+        "score": 50.0,
+        "issues": [
+          "Poor coordination quality (score: 31.1)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0012",
+        "prediction": "Borderline",
+        "score": 50.0,
+        "issues": [
+          "Poor coordination quality (score: 48.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0027",
+        "prediction": "Borderline",
+        "score": 73.0,
+        "issues": [
+          "Poor coordination quality (score: 25.6)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0015",
+        "prediction": "Safe",
+        "score": 50.0,
+        "issues": [
+          "Poor coordination quality (score: 41.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0028",
+        "prediction": "Safe",
+        "score": 81.0,
+        "issues": [
+          "Poor coordination quality (score: 43.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0018",
+        "prediction": "Borderline",
+        "score": 50.0,
+        "issues": [
+          "Poor coordination quality (score: 29.0)"
+        ]
+      }
+    ]
+  },
+  "metrics": {
+    "Single-Metric": {
+      "accuracy": 0.4,
+      "precision": 0.25,
+      "recall": 1.0,
+      "f1_score": 0.4,
+      "human_agreement_kappa": 0.11764705882352955
+    },
+    "Fixed-Weight": {
+      "accuracy": 0.5,
+      "precision": 0.25,
+      "recall": 0.5,
+      "f1_score": 0.3333333333333333,
+      "human_agreement_kappa": 0.09090909090909094
+    },
+    "Single-Agent-LLM": {
+      "accuracy": 0.4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "human_agreement_kappa": 0.0
+    },
+    "Multi-Agent-Debate": {
+      "accuracy": 0.4,
+      "precision": 0.2,
+      "recall": 0.5,
+      "f1_score": 0.2857142857142857,
+      "human_agreement_kappa": 0.0
+    }
+  }
+}

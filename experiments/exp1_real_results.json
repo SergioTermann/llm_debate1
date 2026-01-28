@@ -1,0 +1,878 @@
+{
+  "dataset": "improved_uav_missions.json",
+  "num_missions": 30,
+  "results": {
+    "Single-Metric": [
+      {
+        "mission_id": "MISSION-0003",
+        "prediction": "Safe",
+        "score": 90.08754627362012,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0013",
+        "prediction": "Borderline",
+        "score": 71.86749743170643,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0022",
+        "prediction": "Safe",
+        "score": 88.98152978721608,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0020",
+        "prediction": "Safe",
+        "score": 91.76147120655466,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0002",
+        "prediction": "Safe",
+        "score": 80.66265136203216,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0012",
+        "prediction": "Borderline",
+        "score": 73.54124889808062,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0027",
+        "prediction": "Safe",
+        "score": 82.72259015599664,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0015",
+        "prediction": "Safe",
+        "score": 80.94473969395173,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0028",
+        "prediction": "Safe",
+        "score": 89.58279029303989,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0018",
+        "prediction": "Safe",
+        "score": 81.75536860654864,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0026",
+        "prediction": "Borderline",
+        "score": 72.24604573505881,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0010",
+        "prediction": "Safe",
+        "score": 90.28629780358298,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0025",
+        "prediction": "Safe",
+        "score": 92.44167907434293,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0009",
+        "prediction": "Safe",
+        "score": 89.69802706902652,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0011",
+        "prediction": "Borderline",
+        "score": 79.99052161227081,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0024",
+        "prediction": "Safe",
+        "score": 93.16154806476347,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0014",
+        "prediction": "Safe",
+        "score": 85.70456641088128,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0008",
+        "prediction": "Safe",
+        "score": 92.06144027143073,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0017",
+        "prediction": "Safe",
+        "score": 81.27093523044493,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0030",
+        "prediction": "Safe",
+        "score": 82.41248215168153,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0005",
+        "prediction": "Borderline",
+        "score": 70.35701764428894,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0007",
+        "prediction": "Safe",
+        "score": 84.11392972382873,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0016",
+        "prediction": "Safe",
+        "score": 93.61625162444818,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0001",
+        "prediction": "Safe",
+        "score": 90.48002284127622,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0029",
+        "prediction": "Borderline",
+        "score": 75.86680208852361,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0004",
+        "prediction": "Safe",
+        "score": 89.4908582199876,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0023",
+        "prediction": "Safe",
+        "score": 90.07004342861056,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0019",
+        "prediction": "Borderline",
+        "score": 78.4412399507971,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0021",
+        "prediction": "Borderline",
+        "score": 72.50834958578093,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0006",
+        "prediction": "Safe",
+        "score": 90.0224714165899,
+        "issues": []
+      }
+    ],
+    "Fixed-Weight": [
+      {
+        "mission_id": "MISSION-0003",
+        "prediction": "Safe",
+        "score": 83.1449833199903,
+        "issues": [
+          "Poor coordination quality (score: 37.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0013",
+        "prediction": "Borderline",
+        "score": 68.96831711152394,
+        "issues": [
+          "Poor coordination quality (score: 30.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0022",
+        "prediction": "Safe",
+        "score": 81.82399138496625,
+        "issues": [
+          "Poor coordination quality (score: 28.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0020",
+        "prediction": "Safe",
+        "score": 84.41395682731859,
+        "issues": [
+          "Poor coordination quality (score: 36.1)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0002",
+        "prediction": "Borderline",
+        "score": 76.67657945901126,
+        "issues": [
+          "Poor coordination quality (score: 31.1)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0012",
+        "prediction": "Borderline",
+        "score": 72.00692520568607,
+        "issues": [
+          "Poor coordination quality (score: 48.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0027",
+        "prediction": "Borderline",
+        "score": 75.54826545304597,
+        "issues": [
+          "Poor coordination quality (score: 25.6)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0015",
+        "prediction": "Borderline",
+        "score": 77.86084164607136,
+        "issues": [
+          "Poor coordination quality (score: 41.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0028",
+        "prediction": "Safe",
+        "score": 83.4755231576965,
+        "issues": [
+          "Poor coordination quality (score: 43.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0018",
+        "prediction": "Borderline",
+        "score": 76.24947739995598,
+        "issues": [
+          "Poor coordination quality (score: 29.0)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0026",
+        "prediction": "Borderline",
+        "score": 70.26634807075567,
+        "issues": [
+          "Poor coordination quality (score: 35.0)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0010",
+        "prediction": "Safe",
+        "score": 81.8907520498118,
+        "issues": [
+          "Poor coordination quality (score: 30.0)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0025",
+        "prediction": "Safe",
+        "score": 86.76944907517755,
+        "issues": [
+          "Poor coordination quality (score: 52.3)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0009",
+        "prediction": "Safe",
+        "score": 83.37074528596177,
+        "issues": [
+          "Poor coordination quality (score: 42.0)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0011",
+        "prediction": "Borderline",
+        "score": 77.39537484201848,
+        "issues": [
+          "Poor coordination quality (score: 36.8)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0024",
+        "prediction": "Safe",
+        "score": 83.13652105526194,
+        "issues": [
+          "Poor coordination quality (score: 28.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0014",
+        "prediction": "Borderline",
+        "score": 76.80223511215158,
+        "issues": [
+          "Poor coordination quality (score: 34.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0008",
+        "prediction": "Safe",
+        "score": 84.28758895468086,
+        "issues": [
+          "Poor coordination quality (score: 34.2)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0017",
+        "prediction": "Borderline",
+        "score": 79.32585884748515,
+        "issues": [
+          "Poor coordination quality (score: 44.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0030",
+        "prediction": "Borderline",
+        "score": 75.94868757801639,
+        "issues": [
+          "Poor coordination quality (score: 31.3)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0005",
+        "prediction": "Borderline",
+        "score": 70.3266282878234,
+        "issues": [
+          "Poor coordination quality (score: 36.5)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0007",
+        "prediction": "Borderline",
+        "score": 78.01184820515397,
+        "issues": [
+          "Poor coordination quality (score: 42.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0016",
+        "prediction": "Safe",
+        "score": 84.27901703860562,
+        "issues": [
+          "Poor coordination quality (score: 37.0)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0001",
+        "prediction": "Borderline",
+        "score": 79.5232727760753,
+        "issues": [
+          "Poor coordination quality (score: 16.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0029",
+        "prediction": "Borderline",
+        "score": 71.42581692656367,
+        "issues": [
+          "Poor coordination quality (score: 40.8)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0004",
+        "prediction": "Safe",
+        "score": 82.97901307822727,
+        "issues": [
+          "Poor coordination quality (score: 38.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0023",
+        "prediction": "Safe",
+        "score": 83.28991634436433,
+        "issues": [
+          "Poor coordination quality (score: 40.9)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0019",
+        "prediction": "Borderline",
+        "score": 76.76243115116021,
+        "issues": [
+          "Poor coordination quality (score: 33.5)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0021",
+        "prediction": "Borderline",
+        "score": 70.0445465337108,
+        "issues": [
+          "Poor coordination quality (score: 34.9)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0006",
+        "prediction": "Safe",
+        "score": 80.91126093569879,
+        "issues": [
+          "Poor coordination quality (score: 24.9)"
+        ]
+      }
+    ],
+    "Single-Agent-LLM": [
+      {
+        "mission_id": "MISSION-0003",
+        "prediction": "Borderline",
+        "score": 65.0,
+        "issues": [
+          "Poor coordination quality (score: 37.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0013",
+        "prediction": "Risky",
+        "score": 58.0,
+        "issues": [
+          "Poor coordination quality (score: 30.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0022",
+        "prediction": "Risky",
+        "score": 52.0,
+        "issues": [
+          "Poor coordination quality (score: 28.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0020",
+        "prediction": "Risky",
+        "score": 58.0,
+        "issues": [
+          "Poor coordination quality (score: 36.1)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0002",
+        "prediction": "Risky",
+        "score": 58.0,
+        "issues": [
+          "Poor coordination quality (score: 31.1)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0012",
+        "prediction": "Risky",
+        "score": 52.0,
+        "issues": [
+          "Poor coordination quality (score: 48.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0027",
+        "prediction": "Risky",
+        "score": 57.0,
+        "issues": [
+          "Poor coordination quality (score: 25.6)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0015",
+        "prediction": "Borderline",
+        "score": 65.0,
+        "issues": [
+          "Poor coordination quality (score: 41.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0028",
+        "prediction": "Safe",
+        "score": 85.0,
+        "issues": [
+          "Poor coordination quality (score: 43.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0018",
+        "prediction": "Risky",
+        "score": 53.0,
+        "issues": [
+          "Poor coordination quality (score: 29.0)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0026",
+        "prediction": "Risky",
+        "score": 58.0,
+        "issues": [
+          "Poor coordination quality (score: 35.0)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0010",
+        "prediction": "Risky",
+        "score": 55.0,
+        "issues": [
+          "Poor coordination quality (score: 30.0)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0025",
+        "prediction": "Borderline",
+        "score": 85.0,
+        "issues": [
+          "Poor coordination quality (score: 52.3)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0009",
+        "prediction": "Borderline",
+        "score": 62.0,
+        "issues": [
+          "Poor coordination quality (score: 42.0)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0011",
+        "prediction": "Borderline",
+        "score": 64.0,
+        "issues": [
+          "Poor coordination quality (score: 36.8)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0024",
+        "prediction": "Risky",
+        "score": 52.0,
+        "issues": [
+          "Poor coordination quality (score: 28.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0014",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0008",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0017",
+        "prediction": "Borderline",
+        "score": 67.0,
+        "issues": [
+          "Poor coordination quality (score: 44.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0030",
+        "prediction": "Borderline",
+        "score": 68.0,
+        "issues": [
+          "Poor coordination quality (score: 31.3)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0005",
+        "prediction": "Risky",
+        "score": 70.0,
+        "issues": [
+          "Poor coordination quality (score: 36.5)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0007",
+        "prediction": "Borderline",
+        "score": 65.0,
+        "issues": [
+          "Poor coordination quality (score: 42.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0016",
+        "prediction": "Risky",
+        "score": 81.0,
+        "issues": [
+          "Poor coordination quality (score: 37.0)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0001",
+        "prediction": "RISKY",
+        "score": 60.0,
+        "issues": [
+          "Poor coordination quality (score: 16.7)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0029",
+        "prediction": "Risky",
+        "score": 54.0,
+        "issues": [
+          "Poor coordination quality (score: 40.8)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0004",
+        "prediction": "Borderline",
+        "score": 68.0,
+        "issues": [
+          "Poor coordination quality (score: 38.4)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0023",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0019",
+        "prediction": "Borderline",
+        "score": 62.0,
+        "issues": [
+          "Poor coordination quality (score: 33.5)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0021",
+        "prediction": "RISKY",
+        "score": 52.0,
+        "issues": [
+          "Poor coordination quality (score: 34.9)"
+        ]
+      },
+      {
+        "mission_id": "MISSION-0006",
+        "prediction": "Borderline",
+        "score": 75.0,
+        "issues": [
+          "Poor coordination quality (score: 24.9)"
+        ]
+      }
+    ],
+    "Multi-Agent-Debate": [
+      {
+        "mission_id": "MISSION-0003",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0013",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0022",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0020",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0002",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0012",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0027",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0015",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0028",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0018",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0026",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0010",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0025",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0009",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0011",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0024",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0014",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0008",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0017",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0030",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0005",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0007",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0016",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0001",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0029",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0004",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0023",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0019",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0021",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION-0006",
+        "prediction": "Borderline",
+        "score": 50,
+        "issues": []
+      }
+    ]
+  },
+  "metrics": {
+    "Single-Metric": {
+      "accuracy": 0.43333333333333335,
+      "precision": 0.4090909090909091,
+      "recall": 0.9,
+      "f1_score": 0.5625,
+      "human_agreement_kappa": 0.1923076923076923
+    },
+    "Fixed-Weight": {
+      "accuracy": 0.4666666666666667,
+      "precision": 0.46153846153846156,
+      "recall": 0.6,
+      "f1_score": 0.5217391304347826,
+      "human_agreement_kappa": 0.2325581395348837
+    },
+    "Single-Agent-LLM": {
+      "accuracy": 0.3333333333333333,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "human_agreement_kappa": -0.06451612903225823
+    },
+    "Multi-Agent-Debate": {
+      "accuracy": 0.3333333333333333,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "human_agreement_kappa": 0.0
+    }
+  }
+}
