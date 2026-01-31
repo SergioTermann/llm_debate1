@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard Test</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>WebSocket Connection Test</h1>
+    <div id="status">Connecting...</div>
+    <div id="messages"></div>
+
+    <script>
+        const socket = io('http://localhost:5000');
+        const statusDiv = document.getElementById('status');
+        const messagesDiv = document.getElementById('messages');
+
+        socket.on('connect', () => {
+            statusDiv.innerHTML = '<span style="color: green;">✅ Connected</span>';
+            addMessage('Connected to server');
+        });
+
+        socket.on('disconnect', () => {
+            statusDiv.innerHTML = '<span style="color: red;">❌ Disconnected</span>';
+            addMessage('Disconnected from server');
+        });
+
+        socket.on('connected', (data) => {
+            addMessage('Server says: ' + JSON.stringify(data));
+        });
+
+        socket.on('experiment_initialized', (data) => {
+            addMessage('Experiment initialized: ' + JSON.stringify(data));
+        });
+
+        socket.on('mission_update', (data) => {
+            addMessage('Mission update: ' + JSON.stringify(data));
+        });
+
+        socket.on('experiment_completed', (data) => {
+            addMessage('Experiment completed: ' + JSON.stringify(data));
+        });
+
+        function addMessage(msg) {
+            const p = document.createElement('p');
+            p.textContent = new Date().toLocaleTimeString() + ' - ' + msg;
+            messagesDiv.appendChild(p);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+% Multi-Agent Debate Framework Formulation
+% This file contains the mathematical formulations for the debate framework
+
+\subsection{Structured Response Format}
+
+Each agent $a_i$ in round $r$ produces a structured response $\mathcal{R}_i^{(r)}$ containing five components:
+
+\begin{equation}
+\mathcal{R}_i^{(r)} = \{c_i, e_i, \gamma_i, s_i, \kappa_i\}
+\end{equation}
+
+where $c_i$ is the claim, $e_i$ is the evidence list, $\gamma_i \in [0,1]$ is the confidence score, $s_i$ is the summary, and $\kappa_i$ is the counter-argument.
+
+\subsection{Agent Weight Update}
+
+Agent weights are updated based on confidence and inter-agent agreement. For agent $i$ in round $r$, the agreement score is:
+
+\begin{equation}
+\text{Agree}_i^{(r)} = \frac{1}{N-1} \sum_{j \neq i} \text{Sim}(s_i^{(r)}, s_j^{(r)})
+\end{equation}
+
+where $\text{Sim}(\cdot, \cdot)$ computes sequence similarity using longest common subsequence ratio. The logit for agent $i$ is then:
+
+\begin{equation}
+\ell_i^{(r)} = \alpha \cdot \gamma_i^{(r)} + \beta \cdot \text{Agree}_i^{(r)}
+\end{equation}
+
+with hyperparameters $\alpha = 1.0$ and $\beta = 1.0$. Weights are normalized using softmax:
+
+\begin{equation}
+w_i^{(r)} = \frac{\exp(\ell_i^{(r)})}{\sum_{j=1}^N \exp(\ell_j^{(r)})}
+\end{equation}
+
+\subsection{Early Stopping Criterion}
+
+The debate terminates early if the inter-round summary similarity exceeds a threshold:
+
+\begin{equation}
+\text{Sim}\left(\bigoplus_{i=1}^N s_i^{(r)}, \bigoplus_{i=1}^N s_i^{(r-1)}\right) > \tau_{\text{stop}}
+\end{equation}
+
+where $\bigoplus$ denotes concatenation and $\tau_{\text{stop}} = 0.92$.
+
+\subsection{Consensus Score}
+
+Overall consensus is computed as a weighted average of four dimensions:
+
+\begin{equation}
+C^{(r)} = \sum_{d \in \mathcal{D}} w_d \cdot C_d^{(r)}
+\end{equation}
+
+where $\mathcal{D} = \{\text{score}, \text{semantic}, \text{priority}, \text{concern}\}$ and weights are $(0.25, 0.30, 0.25, 0.20)$ respectively.
+
+\subsection{Quality Monitoring}
+
+The overall quality score for round $r$ is the minimum of four quality dimensions:
+
+\begin{equation}
+Q^{(r)} = \min\{Q_{\text{evidence}}^{(r)}, Q_{\text{coverage}}^{(r)}, Q_{\text{coherence}}^{(r)}, Q_{\text{novelty}}^{(r)}\}
+\end{equation}
+
+An intervention is triggered if $Q^{(r)} < \tau_Q = 0.7$.
