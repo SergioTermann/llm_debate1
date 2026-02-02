@@ -182,37 +182,34 @@
     "Single-Agent-LLM": [
       {
         "mission_id": "COMPLEX_01_MULTI_LAYER_FORMATION",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 82.0,
+        "issues": [
+          "Poor formation stability (score: 49.9)",
+          "Poor coordination quality (score: 15.3)"
+        ]
+      },
+      {
+        "mission_id": "COMPLEX_02_COLLABORATIVE_SEARCH",
         "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_02_COLLABORATIVE_SEARCH",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 85.0,
-        "issues": [
-          "Poor coordination quality (score: 18.4)"
-        ]
-      },
-      {
         "mission_id": "COMPLEX_03_COLLABORATIVE_ATTACK",
         "prediction": "Borderline",
-        "efficiency_prediction": "High",
-        "score": 55.0,
-        "issues": [
-          "Poor coordination quality (score: 16.0)"
-        ]
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_04_COLLABORATIVE_DEFENSE",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 98.0,
-        "issues": [
-          "Poor coordination quality (score: 10.1)"
-        ]
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT",
@@ -223,37 +220,35 @@
       },
       {
         "mission_id": "COMPLEX_06_FORMATION_BREAK_COLLISION",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Medium",
-        "score": 50,
-        "issues": []
+        "prediction": "Risky",
+        "efficiency_prediction": "Low",
+        "score": 45.0,
+        "issues": [
+          "Poor coordination quality (score: 31.7)"
+        ]
       },
       {
         "mission_id": "COMPLEX_07_GPS_GLITCH",
         "prediction": "Risky",
         "efficiency_prediction": "Low",
-        "score": 65.0,
+        "score": 85.0,
         "issues": [
           "Poor coordination quality (score: 19.6)"
         ]
       },
       {
         "mission_id": "COMPLEX_08_SIGNAL_LOSS",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 45.0,
-        "issues": [
-          "Poor coordination quality (score: 32.3)"
-        ]
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_09_EMERGENCY_EVASION",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 85.0,
-        "issues": [
-          "Poor coordination quality (score: 10.6)"
-        ]
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_10_COORDINATED_LANDING",
@@ -294,17 +289,22 @@
       },
       {
         "mission_id": "COMPLEX_04_COLLABORATIVE_DEFENSE",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Medium",
-        "score": 50,
-        "issues": []
+        "prediction": "Risky",
+        "efficiency_prediction": "Low",
+        "score": 72.0,
+        "issues": [
+          "Poor coordination quality (score: 10.1)"
+        ]
       },
       {
         "mission_id": "COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Medium",
-        "score": 50,
-        "issues": []
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 66.0,
+        "issues": [
+          "Poor formation stability (score: 53.0)",
+          "Poor coordination quality (score: 22.7)"
+        ]
       },
       {
         "mission_id": "COMPLEX_06_FORMATION_BREAK_COLLISION",
@@ -319,7 +319,7 @@
         "mission_id": "COMPLEX_07_GPS_GLITCH",
         "prediction": "Risky",
         "efficiency_prediction": "Low",
-        "score": 46.0,
+        "score": 67.0,
         "issues": [
           "Poor coordination quality (score: 19.6)"
         ]
@@ -418,13 +418,13 @@
       "efficiency_accuracy": 0.6
     },
     "Single-Agent-LLM": {
-      "accuracy": 0.6,
-      "precision": 0.39999999999999997,
-      "recall": 0.5185185185185185,
-      "f1_score": 0.34920634920634924,
-      "weighted_precision": 0.9199999999999999,
-      "weighted_recall": 0.6,
-      "weighted_f1": 0.6761904761904762,
+      "accuracy": 0.4,
+      "precision": 0.38095238095238093,
+      "recall": 0.4444444444444444,
+      "f1_score": 0.25,
+      "weighted_precision": 0.9142857142857143,
+      "weighted_recall": 0.4,
+      "weighted_f1": 0.475,
       "per_class": {
         "Safe": {
           "precision": 0.0,
@@ -433,29 +433,29 @@
           "support": 0
         },
         "Borderline": {
-          "precision": 0.2,
+          "precision": 0.14285714285714285,
           "recall": 1.0,
-          "f1": 0.3333333333333333,
+          "f1": 0.25,
           "support": 1
         },
         "Risky": {
           "precision": 1.0,
-          "recall": 0.5555555555555556,
-          "f1": 0.7142857142857143,
+          "recall": 0.3333333333333333,
+          "f1": 0.5,
           "support": 9
         }
       },
       "human_agreement_kappa": NaN,
-      "efficiency_accuracy": 0.4
+      "efficiency_accuracy": 0.1
     },
     "Multi-Agent-Debate": {
-      "accuracy": 0.7,
-      "precision": 0.2916666666666667,
-      "recall": 0.25925925925925924,
-      "f1_score": 0.2745098039215686,
-      "weighted_precision": 0.7875,
-      "weighted_recall": 0.7,
-      "weighted_f1": 0.7411764705882352,
+      "accuracy": 0.9,
+      "precision": 0.3,
+      "recall": 0.3333333333333333,
+      "f1_score": 0.3157894736842105,
+      "weighted_precision": 0.8099999999999999,
+      "weighted_recall": 0.9,
+      "weighted_f1": 0.8526315789473683,
       "per_class": {
         "Safe": {
           "precision": 0.0,
@@ -470,14 +470,14 @@
           "support": 1
         },
         "Risky": {
-          "precision": 0.875,
-          "recall": 0.7777777777777778,
-          "f1": 0.8235294117647058,
+          "precision": 0.9,
+          "recall": 1.0,
+          "f1": 0.9473684210526315,
           "support": 9
         }
       },
       "human_agreement_kappa": NaN,
-      "efficiency_accuracy": 0.5
+      "efficiency_accuracy": 0.6
     }
   }
 }

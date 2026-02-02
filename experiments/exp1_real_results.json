@@ -2,71 +2,356 @@
   "dataset": "complex_uav_missions.json",
   "num_missions": 10,
   "results": {
-    "Multi-Agent-Debate": [
+    "Single-Metric": [
       {
         "mission_id": "COMPLEX_01_MULTI_LAYER_FORMATION",
-        "ground_truth": "Risky",
         "prediction": "Risky",
-        "correct": true
+        "efficiency_prediction": "High",
+        "score": 49.66319611203184,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_02_COLLABORATIVE_SEARCH",
-        "ground_truth": "Risky",
         "prediction": "Risky",
-        "correct": true
+        "efficiency_prediction": "Low",
+        "score": 42.28697361855223,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_03_COLLABORATIVE_ATTACK",
-        "ground_truth": "Risky",
         "prediction": "Risky",
-        "correct": true
+        "efficiency_prediction": "High",
+        "score": 47.1401217053961,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_04_COLLABORATIVE_DEFENSE",
-        "ground_truth": "Risky",
-        "prediction": "ERROR",
-        "correct": false
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 66.24108601675852,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT",
-        "ground_truth": "Risky",
         "prediction": "Risky",
-        "correct": true
+        "efficiency_prediction": "High",
+        "score": 46.661236935375825,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_06_FORMATION_BREAK_COLLISION",
-        "ground_truth": "Risky",
         "prediction": "Risky",
-        "correct": true
+        "efficiency_prediction": "Low",
+        "score": 45.28326603804753,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_07_GPS_GLITCH",
-        "ground_truth": "Risky",
         "prediction": "Risky",
-        "correct": true
+        "efficiency_prediction": "Low",
+        "score": 17.398078198510888,
+        "issues": [
+          "GPS drift detected (50 points)"
+        ]
       },
       {
         "mission_id": "COMPLEX_08_SIGNAL_LOSS",
-        "ground_truth": "Risky",
         "prediction": "Risky",
-        "correct": true
+        "efficiency_prediction": "Low",
+        "score": 38.97104513336968,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_09_EMERGENCY_EVASION",
-        "ground_truth": "Risky",
         "prediction": "Risky",
-        "correct": true
+        "efficiency_prediction": "Low",
+        "score": 42.10471477871327,
+        "issues": []
       },
       {
         "mission_id": "COMPLEX_10_COORDINATED_LANDING",
-        "ground_truth": "Borderline",
-        "prediction": "Risky",
-        "correct": false
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.25701740758211,
+        "issues": []
       }
     ],
-    "Single-Metric": [],
-    "Fixed-Weight": [],
-    "Single-Agent-LLM": []
+    "Fixed-Weight": [
+      {
+        "mission_id": "COMPLEX_01_MULTI_LAYER_FORMATION",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 24.589067407088905,
+        "issues": [
+          "Poor formation stability (score: 49.9)",
+          "Poor coordination quality (score: 15.3)",
+          "Close formation detected (min distance: 19.5m)"
+        ]
+      },
+      {
+        "mission_id": "COMPLEX_02_COLLABORATIVE_SEARCH",
+        "prediction": "Risky",
+        "efficiency_prediction": "Low",
+        "score": 20.483491307307865,
+        "issues": [
+          "Poor coordination quality (score: 18.4)",
+          "Close formation detected (min distance: 16.7m)"
+        ]
+      },
+      {
+        "mission_id": "COMPLEX_03_COLLABORATIVE_ATTACK",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 16.93651043386553,
+        "issues": [
+          "Poor coordination quality (score: 16.0)",
+          "Close formation detected (min distance: 0.0m)"
+        ]
+      },
+      {
+        "mission_id": "COMPLEX_04_COLLABORATIVE_DEFENSE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 57.8419925128556,
+        "issues": [
+          "Poor coordination quality (score: 10.1)"
+        ]
+      },
+      {
+        "mission_id": "COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 36.014381504919605,
+        "issues": [
+          "Poor formation stability (score: 53.0)",
+          "Poor coordination quality (score: 22.7)"
+        ]
+      },
+      {
+        "mission_id": "COMPLEX_06_FORMATION_BREAK_COLLISION",
+        "prediction": "Risky",
+        "efficiency_prediction": "Low",
+        "score": 18.947927559727333,
+        "issues": [
+          "Poor coordination quality (score: 31.7)",
+          "Close formation detected (min distance: 9.8m)"
+        ]
+      },
+      {
+        "mission_id": "COMPLEX_07_GPS_GLITCH",
+        "prediction": "Risky",
+        "efficiency_prediction": "Low",
+        "score": 2.39032810476656,
+        "issues": [
+          "Poor coordination quality (score: 19.6)",
+          "GPS drift detected (300 points, 6 drones)"
+        ]
+      },
+      {
+        "mission_id": "COMPLEX_08_SIGNAL_LOSS",
+        "prediction": "Risky",
+        "efficiency_prediction": "Low",
+        "score": 3.4367829840170856,
+        "issues": [
+          "Poor coordination quality (score: 32.3)",
+          "Signal loss detected (77 points, 5 drones)",
+          "Close formation detected (min distance: 4.3m)"
+        ]
+      },
+      {
+        "mission_id": "COMPLEX_09_EMERGENCY_EVASION",
+        "prediction": "Risky",
+        "efficiency_prediction": "Low",
+        "score": 38.27997825326399,
+        "issues": [
+          "Poor coordination quality (score: 10.6)"
+        ]
+      },
+      {
+        "mission_id": "COMPLEX_10_COORDINATED_LANDING",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 37.79691134905967,
+        "issues": [
+          "Poor formation stability (score: 59.1)",
+          "Poor coordination quality (score: 40.9)",
+          "Close formation detected (min distance: 0.0m)"
+        ]
+      }
+    ],
+    "Single-Agent-LLM": [
+      {
+        "mission_id": "COMPLEX_01_MULTI_LAYER_FORMATION",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_02_COLLABORATIVE_SEARCH",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_03_COLLABORATIVE_ATTACK",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_04_COLLABORATIVE_DEFENSE",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_06_FORMATION_BREAK_COLLISION",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_07_GPS_GLITCH",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_08_SIGNAL_LOSS",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_09_EMERGENCY_EVASION",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_10_COORDINATED_LANDING",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      }
+    ],
+    "Multi-Agent-Debate": [
+      {
+        "mission_id": "COMPLEX_01_MULTI_LAYER_FORMATION",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_02_COLLABORATIVE_SEARCH",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_03_COLLABORATIVE_ATTACK",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_04_COLLABORATIVE_DEFENSE",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_06_FORMATION_BREAK_COLLISION",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_07_GPS_GLITCH",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_08_SIGNAL_LOSS",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_09_EMERGENCY_EVASION",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "COMPLEX_10_COORDINATED_LANDING",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      }
+    ]
   },
-  "metrics": {}
+  "metrics": {
+    "Single-Metric": {
+      "accuracy": 0.8,
+      "precision": 1.0,
+      "recall": 0.8888888888888888,
+      "f1_score": 0.9411764705882353,
+      "efficiency_accuracy": 0.6
+    },
+    "Fixed-Weight": {
+      "accuracy": 0.8,
+      "precision": 0.8888888888888888,
+      "recall": 0.8888888888888888,
+      "f1_score": 0.8888888888888888,
+      "efficiency_accuracy": 0.6
+    },
+    "Single-Agent-LLM": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "efficiency_accuracy": 0.6
+    },
+    "Multi-Agent-Debate": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "efficiency_accuracy": 0.6
+    }
+  }
 }
