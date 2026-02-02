@@ -484,6 +484,355 @@ def generate_dynamic_role_assignment(num_drones=15, base_lat=0.0, base_lon=0.0,
     
     return drones
 
+def calculate_ground_truth(drones, mission_type):
+    """计算多维度ground truth评分"""
+    
+    # 分析所有无人机的轨迹
+    trajectory_analyses = []
+    for drone in drones:
+        trajectory = drone['trajectory']
+        analysis = analyze_trajectory_metrics(trajectory)
+        trajectory_analyses.append(analysis)
+    
+    # 计算编队稳定性
+    formation_stability = calculate_formation_stability(drones)
+    
+    # 计算协调质量
+    coordination_quality = calculate_coordination_quality(drones)
+    
+    # 检测风险因素
+    risk_factors = detect_risk_factors(drones, trajectory_analyses)
+    
+    # 检测不可观测性问题
+    unobservable_issues = detect_unobservable_issues(drones)
+    
+    # 计算综合安全性评分 (0-100)
+    safety_score = calculate_safety_score(
+        trajectory_analyses,
+        formation_stability,
+        coordination_quality,
+        risk_factors,
+        unobservable_issues
+    )
+    
+    # 计算效率评分 (0-100)
+    efficiency_score = calculate_efficiency_score(drones, trajectory_analyses)
+    
+    # 根据综合评分确定分类
+    if safety_score >= 75:
+        safety_label = "Safe"
+    elif safety_score >= 55:
+        safety_label = "Borderline"
+    else:
+        safety_label = "Risky"
+    
+    if efficiency_score >= 70:
+        efficiency_label = "High"
+    elif efficiency_score >= 50:
+        efficiency_label = "Medium"
+    else:
+        efficiency_label = "Low"
+    
+    return {
+        'safety_label': safety_label,
+        'safety_score': round(safety_score, 2),
+        'efficiency_label': efficiency_label,
+        'efficiency_score': round(efficiency_score, 2),
+        'formation_stability': round(formation_stability, 2),
+        'coordination_quality': round(coordination_quality, 2),
+        'trajectory_smoothness': round(np.mean([a['smoothness'] for a in trajectory_analyses]), 2),
+        'altitude_stability': round(np.mean([a['altitude_stability'] for a in trajectory_analyses]), 2),
+        'speed_consistency': round(np.mean([a['speed_consistency'] for a in trajectory_analyses]), 2),
+        'risk_factors': risk_factors,
+        'unobservable_issues': unobservable_issues,
+        'mission_complexity': calculate_mission_complexity(drones, mission_type)
+    }
+
+def analyze_trajectory_metrics(trajectory):
+    """分析单个轨迹的指标"""
+    if len(trajectory) < 2:
+        return {'smoothness': 0, 'altitude_stability': 0, 'speed_consistency': 0}
+    
+    headings = [p['heading'] for p in trajectory]
+    altitudes = [p['altitude'] for p in trajectory]
+    speeds = [p['speed'] for p in trajectory]
+    
+    # 航向变化
+    heading_changes = []
+    for i in range(1, len(headings)):
+        diff = abs(headings[i] - headings[i-1])
+        if diff > 180:
+            diff = 360 - diff
+        heading_changes.append(diff)
+    
+    avg_heading_change = np.mean(heading_changes) if heading_changes else 0
+    smoothness = max(0, 100 - avg_heading_change * 2)
+    
+    # 高度稳定性
+    altitude_std = np.std(altitudes) if len(altitudes) > 1 else 0
+    altitude_stability = max(0, 100 - altitude_std * 0.5)
+    
+    # 速度一致性
+    speed_std = np.std(speeds) if len(speeds) > 1 else 0
+    speed_consistency = max(0, 100 - speed_std * 2)
+    
+    return {
+        'smoothness': smoothness,
+        'altitude_stability': altitude_stability,
+        'speed_consistency': speed_consistency,
+        'max_heading_change': max(heading_changes) if heading_changes else 0,
+        'altitude_range': max(altitudes) - min(altitudes) if altitudes else 0
+    }
+
+def calculate_formation_stability(drones):
+    """计算编队稳定性"""
+    if len(drones) < 2:
+        return 100.0
+    
+    time_map = {}
+    for drone in drones:
+        for point in drone['trajectory']:
+            t = int(point.get('timestamp', point.get('time', 0)))
+            lat = point['latitude']
+            lon = point['longitude']
+            if t not in time_map:
+                time_map[t] = []
+            time_map[t].append((lat, lon))
+    
+    # 计算每个时间点的编队稳定性
+    formation_scores = []
+    for t, positions in time_map.items():
+        if len(positions) < 2:
+            continue
+        
+        # 计算所有无人机之间的距离
+        distances = []
+        for i in range(len(positions)):
+            for j in range(i + 1, len(positions)):
+                lat1, lon1 = positions[i]
+                lat2, lon2 = positions[j]
+                dist = math.sqrt((lat1 - lat2)**2 + (lon1 - lon2)**2) * 111000
+                distances.append(dist)
+        
+        if distances:
+            # 距离方差越小，编队越稳定
+            # 使用相对标准差（变异系数）来评估稳定性
+            distance_mean = np.mean(distances)
+            distance_std = np.std(distances)
+            
+            # 变异系数：标准差/均值，用于衡量相对变化
+            if distance_mean > 0:
+                cv = distance_std / distance_mean
+                # 变异系数越小越好，使用更宽松的阈值
+                formation_score = max(0, 100 - cv * 50)
+            else:
+                formation_score = 100.0
+            
+            formation_scores.append(formation_score)
+    
+    return np.mean(formation_scores) if formation_scores else 100.0
+
+def calculate_coordination_quality(drones):
+    """计算协调质量"""
+    if len(drones) < 2:
+        return 100.0
+    
+    # 分析航向一致性
+    time_map = {}
+    for drone in drones:
+        for point in drone['trajectory']:
+            t = int(point.get('timestamp', point.get('time', 0)))
+            heading = point['heading']
+            if t not in time_map:
+                time_map[t] = []
+            time_map[t].append(heading)
+    
+    coordination_scores = []
+    for t, headings in time_map.items():
+        if len(headings) < 2:
+            continue
+        
+        # 航向标准差
+        heading_std = np.std(headings)
+        coordination_score = max(0, 100 - heading_std * 0.5)
+        coordination_scores.append(coordination_score)
+    
+    return np.mean(coordination_scores) if coordination_scores else 100.0
+
+def detect_risk_factors(drones, trajectory_analyses):
+    """检测风险因素"""
+    risk_factors = []
+    
+    for i, (drone, analysis) in enumerate(zip(drones, trajectory_analyses)):
+        # 急剧转向风险
+        if analysis['max_heading_change'] > 60:
+            risk_factors.append({
+                'drone_id': drone['drone_id'],
+                'type': 'sharp_turn',
+                'severity': 'high' if analysis['max_heading_change'] > 90 else 'medium',
+                'value': analysis['max_heading_change']
+            })
+        
+        # 高度不稳定风险
+        if analysis['altitude_range'] > 50:
+            risk_factors.append({
+                'drone_id': drone['drone_id'],
+                'type': 'altitude_instability',
+                'severity': 'high' if analysis['altitude_range'] > 80 else 'medium',
+                'value': analysis['altitude_range']
+            })
+        
+        # 轨迹不平滑风险
+        if analysis['smoothness'] < 50:
+            risk_factors.append({
+                'drone_id': drone['drone_id'],
+                'type': 'rough_trajectory',
+                'severity': 'high' if analysis['smoothness'] < 30 else 'medium',
+                'value': analysis['smoothness']
+            })
+    
+    return risk_factors
+
+def detect_unobservable_issues(drones):
+    """检测不可观测性问题"""
+    unobservable_issues = []
+    
+    for drone in drones:
+        trajectory = drone['trajectory']
+        gps_drift_count = 0
+        signal_loss_count = 0
+        
+        for point in trajectory:
+            if point.get('gps_status') == 'DRIFT':
+                gps_drift_count += 1
+            if point.get('signal_status') == 'LOST':
+                signal_loss_count += 1
+        
+        if gps_drift_count > 0:
+            unobservable_issues.append({
+                'drone_id': drone['drone_id'],
+                'type': 'gps_drift',
+                'count': gps_drift_count,
+                'severity': 'high' if gps_drift_count > 30 else 'medium'
+            })
+        
+        if signal_loss_count > 0:
+            unobservable_issues.append({
+                'drone_id': drone['drone_id'],
+                'type': 'signal_loss',
+                'count': signal_loss_count,
+                'severity': 'high' if signal_loss_count > 20 else 'medium'
+            })
+    
+    return unobservable_issues
+
+def calculate_safety_score(trajectory_analyses, formation_stability, 
+                         coordination_quality, risk_factors, unobservable_issues):
+    """计算综合安全性评分"""
+    
+    # 基础分
+    base_score = (
+        np.mean([a['smoothness'] for a in trajectory_analyses]) * 0.3 +
+        np.mean([a['altitude_stability'] for a in trajectory_analyses]) * 0.25 +
+        np.mean([a['speed_consistency'] for a in trajectory_analyses]) * 0.2 +
+        formation_stability * 0.15 +
+        coordination_quality * 0.1
+    )
+    
+    # 风险因素惩罚
+    risk_penalty = 0
+    for factor in risk_factors:
+        if factor['severity'] == 'high':
+            risk_penalty += 15
+        elif factor['severity'] == 'medium':
+            risk_penalty += 8
+    
+    # 不可观测性问题惩罚
+    unobservable_penalty = 0
+    for issue in unobservable_issues:
+        if issue['severity'] == 'high':
+            unobservable_penalty += 20
+        elif issue['severity'] == 'medium':
+            unobservable_penalty += 10
+    
+    # 最终评分
+    final_score = max(0, base_score - risk_penalty - unobservable_penalty)
+    
+    return final_score
+
+def calculate_efficiency_score(drones, trajectory_analyses):
+    """计算效率评分"""
+    
+    # 计算平均速度
+    avg_speed = np.mean([np.mean([p['speed'] for p in d['trajectory']]) for d in drones])
+    
+    # 计算轨迹效率（直线距离 vs 实际距离）
+    efficiency_scores = []
+    for drone in drones:
+        trajectory = drone['trajectory']
+        if len(trajectory) < 2:
+            efficiency_scores.append(100)
+            continue
+        
+        # 直线距离
+        start = trajectory[0]
+        end = trajectory[-1]
+        straight_distance = math.sqrt(
+            (end['latitude'] - start['latitude'])**2 +
+            (end['longitude'] - start['longitude'])**2
+        ) * 111000
+        
+        # 实际距离
+        actual_distance = 0
+        for i in range(1, len(trajectory)):
+            p1 = trajectory[i-1]
+            p2 = trajectory[i]
+            segment_dist = math.sqrt(
+                (p2['latitude'] - p1['latitude'])**2 +
+                (p2['longitude'] - p1['longitude'])**2
+            ) * 111000
+            actual_distance += segment_dist
+        
+        # 效率
+        efficiency = (straight_distance / actual_distance * 100) if actual_distance > 0 else 100
+        efficiency_scores.append(efficiency)
+    
+    avg_efficiency = np.mean(efficiency_scores) if efficiency_scores else 100
+    
+    # 速度调整
+    speed_score = min(100, avg_speed / 25 * 100)
+    
+    # 综合效率评分
+    final_score = avg_efficiency * 0.7 + speed_score * 0.3
+    
+    return final_score
+
+def calculate_mission_complexity(drones, mission_type):
+    """计算任务复杂度"""
+    num_drones = len(drones)
+    avg_points = np.mean([len(d['trajectory']) for d in drones])
+    
+    # 基础复杂度
+    base_complexity = num_drones * 2 + avg_points / 10
+    
+    # 根据任务类型调整
+    type_multiplier = {
+        'Multi-Layer Formation': 1.2,
+        'Collaborative Search': 1.3,
+        'Collaborative Attack': 1.5,
+        'Collaborative Defense': 1.4,
+        'Dynamic Role Assignment': 1.6,
+        'Formation Break & Collision Risk': 1.8,
+        'GPS Glitch (Unobservable)': 2.0,
+        'Signal Loss (Unobservable)': 2.2,
+        'Emergency Evasion': 1.7,
+        'Coordinated Landing': 1.1
+    }
+    
+    multiplier = type_multiplier.get(mission_type, 1.0)
+    
+    return round(base_complexity * multiplier, 2)
+
 def generate_complex_missions():
     """生成所有复杂协同任务"""
     
@@ -495,7 +844,6 @@ def generate_complex_missions():
             'mission_id': 'COMPLEX_01_MULTI_LAYER_FORMATION',
             'mission_type': 'Multi-Layer Formation',
             'flight_duration': '150s',
-            'ground_truth': 'Borderline',
             'complexity': 'high',
             'description': '3层编队（前锋、中锋、后卫），10架无人机协同',
             'generator': generate_multi_layer_formation,
@@ -505,7 +853,6 @@ def generate_complex_missions():
             'mission_id': 'COMPLEX_02_COLLABORATIVE_SEARCH',
             'mission_type': 'Collaborative Search',
             'flight_duration': '150s',
-            'ground_truth': 'Safe',
             'complexity': 'high',
             'description': '3个小组分布式搜索，12架无人机协同',
             'generator': generate_collaborative_search,
@@ -515,7 +862,6 @@ def generate_complex_missions():
             'mission_id': 'COMPLEX_03_COLLABORATIVE_ATTACK',
             'mission_type': 'Collaborative Attack',
             'flight_duration': '150s',
-            'ground_truth': 'Risky',
             'complexity': 'high',
             'description': '3波次协同攻击，15架无人机',
             'generator': generate_collaborative_attack,
@@ -525,7 +871,6 @@ def generate_complex_missions():
             'mission_id': 'COMPLEX_04_COLLABORATIVE_DEFENSE',
             'mission_type': 'Collaborative Defense',
             'flight_duration': '150s',
-            'ground_truth': 'Borderline',
             'complexity': 'high',
             'description': '内外两层环形防御，12架无人机',
             'generator': generate_collaborative_defense,
@@ -535,7 +880,6 @@ def generate_complex_missions():
             'mission_id': 'COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT',
             'mission_type': 'Dynamic Role Assignment',
             'flight_duration': '150s',
-            'ground_truth': 'Risky',
             'complexity': 'high',
             'description': '动态角色切换（侦察→攻击→支援），15架无人机',
             'generator': generate_dynamic_role_assignment,
@@ -545,7 +889,6 @@ def generate_complex_missions():
             'mission_id': 'COMPLEX_06_FORMATION_BREAK_COLLISION',
             'mission_type': 'Formation Break & Collision Risk',
             'flight_duration': '150s',
-            'ground_truth': 'Risky',
             'complexity': 'high',
             'description': '编队破裂导致碰撞风险，10架无人机',
             'generator': generate_multi_layer_formation,
@@ -555,7 +898,6 @@ def generate_complex_missions():
             'mission_id': 'COMPLEX_07_GPS_GLITCH',
             'mission_type': 'GPS Glitch (Unobservable)',
             'flight_duration': '150s',
-            'ground_truth': 'Risky',
             'complexity': 'high',
             'description': 'GPS故障导致位置漂移，部分无人机轨迹不可观测，12架无人机',
             'generator': generate_multi_layer_formation,
@@ -565,7 +907,6 @@ def generate_complex_missions():
             'mission_id': 'COMPLEX_08_SIGNAL_LOSS',
             'mission_type': 'Signal Loss (Unobservable)',
             'flight_duration': '150s',
-            'ground_truth': 'Risky',
             'complexity': 'high',
             'description': '通信信号丢失导致数据缺失，10架无人机',
             'generator': generate_collaborative_search,
@@ -575,7 +916,6 @@ def generate_complex_missions():
             'mission_id': 'COMPLEX_09_EMERGENCY_EVASION',
             'mission_type': 'Emergency Evasion',
             'flight_duration': '150s',
-            'ground_truth': 'Risky',
             'complexity': 'high',
             'description': '紧急规避机动，12架无人机协同',
             'generator': generate_collaborative_defense,
@@ -585,7 +925,6 @@ def generate_complex_missions():
             'mission_id': 'COMPLEX_10_COORDINATED_LANDING',
             'mission_type': 'Coordinated Landing',
             'flight_duration': '150s',
-            'ground_truth': 'Borderline',
             'complexity': 'medium',
             'description': '协同降落，15架无人机',
             'generator': generate_collaborative_attack,
@@ -670,14 +1009,17 @@ def generate_complex_missions():
                     # 添加随机抖动模拟降落不稳定性
                     trajectory[i]['heading'] += random.uniform(-10, 10)
         
+        # 计算多维度ground truth
+        ground_truth = calculate_ground_truth(drones, config['mission_type'])
+        
         missions.append({
             'mission_id': config['mission_id'],
             'mission_type': config['mission_type'],
             'flight_duration': config['flight_duration'],
-            'ground_truth': config['ground_truth'],
             'description': config['description'],
             'num_drones': len(drones),
-            'drones': drones
+            'drones': drones,
+            'ground_truth': ground_truth
         })
     
     return missions

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Test</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .connected { background: #d4edda; color: #155724; }
+        .disconnected { background: #f8d7da; color: #721c24; }
+        .messages {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .message {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔌 WebSocket Connection Test</h1>
+    <div id="status" class="status disconnected">未连接</div>
+    <div id="messages" class="messages">
+        <div class="message">等待连接...</div>
+    </div>
+
+    <script>
+        const socket = io('http://localhost:5000', {
+            transports: ['websocket', 'polling'],
+            reconnection: true,
+            reconnectionDelay: 1000,
+            reconnectionAttempts: 10
+        });
+
+        const statusDiv = document.getElementById('status');
+        const messagesDiv = document.getElementById('messages');
+
+        function addMessage(msg, type = 'info') {
+            const div = document.createElement('div');
+            div.className = 'message';
+            const time = new Date().toLocaleTimeString();
+            div.innerHTML = `<strong>[${time}]</strong> ${msg}`;
+            messagesDiv.appendChild(div);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            console.log(msg);
+        }
+
+        socket.on('connect', () => {
+            statusDiv.textContent = '✅ 已连接';
+            statusDiv.className = 'status connected';
+            addMessage('成功连接到服务器', 'success');
+        });
+
+        socket.on('disconnect', (reason) => {
+            statusDiv.textContent = '❌ 已断开';
+            statusDiv.className = 'status disconnected';
+            addMessage(`断开连接: ${reason}`, 'error');
+        });
+
+        socket.on('connect_error', (error) => {
+            statusDiv.textContent = '❌ 连接错误';
+            statusDiv.className = 'status disconnected';
+            addMessage(`连接错误: ${error}`, 'error');
+            console.error('Connection error:', error);
+        });
+
+        socket.on('error', (error) => {
+            addMessage(`Socket错误: ${error}`, 'error');
+            console.error('Socket error:', error);
+        });
+
+        socket.on('connected', (data) => {
+            addMessage(`服务器消息: ${JSON.stringify(data)}`);
+        });
+
+        socket.on('experiment_initialized', (data) => {
+            addMessage(`实验初始化: ${JSON.stringify(data)}`, 'success');
+        });
+
+        socket.on('mission_update', (data) => {
+            addMessage(`任务更新: 任务 ${data.mission_idx + 1}`, 'success');
+        });
+
+        socket.on('experiment_completed', (data) => {
+            addMessage(`实验完成!`, 'success');
+        });
+
+        socket.on('reset', () => {
+            addMessage(`仪表板已重置`);
+        });
+    </script>
+</body>
+</html>

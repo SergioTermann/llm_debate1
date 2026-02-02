@@ -1,6 +1,12 @@
 // UAV Safety Dashboard - Frontend JavaScript
 
-const socket = io();
+const socket = io('http://localhost:5000', {
+    transports: ['websocket', 'polling'],
+    reconnection: true,
+    reconnectionDelay: 1000,
+    reconnectionAttempts: 10
+});
+
 let safetyChart, efficiencyChart, barChart;
 let precisionChart, recallChart, f1Chart, kappaChart;
 let currentMethods = [];
@@ -18,6 +24,29 @@ const classColors = {
     'Borderline': '#f39c12',
     'Risky': '#e74c3c'
 };
+
+// Socket event handlers
+socket.on('connect', () => {
+    console.log('Connected to dashboard server');
+    document.getElementById('connection-status').textContent = 'Connected';
+    document.getElementById('connection-status').className = 'status-badge connected';
+});
+
+socket.on('disconnect', (reason) => {
+    console.log('Disconnected from dashboard server:', reason);
+    document.getElementById('connection-status').textContent = 'Disconnected';
+    document.getElementById('connection-status').className = 'status-badge disconnected';
+});
+
+socket.on('connect_error', (error) => {
+    console.error('Connection error:', error);
+    document.getElementById('connection-status').textContent = 'Connection Error';
+    document.getElementById('connection-status').className = 'status-badge disconnected';
+});
+
+socket.on('error', (error) => {
+    console.error('Socket error:', error);
+});
 
 // Initialize charts
 function initCharts() {
@@ -281,19 +310,7 @@ function updateFinalMetrics(metricsTable, methods) {
     finalMetricsDiv.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Socket event handlers
-socket.on('connect', () => {
-    console.log('Connected to dashboard server');
-    document.getElementById('connection-status').textContent = 'Connected';
-    document.getElementById('connection-status').className = 'status-badge connected';
-});
-
-socket.on('disconnect', () => {
-    console.log('Disconnected from dashboard server');
-    document.getElementById('connection-status').textContent = 'Disconnected';
-    document.getElementById('connection-status').className = 'status-badge disconnected';
-});
-
+// Socket event handlers for experiment updates
 socket.on('experiment_initialized', (data) => {
     console.log('Experiment initialized:', data);
     currentMethods = data.methods;

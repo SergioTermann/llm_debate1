@@ -63,10 +63,9 @@ def reset_experiment():
 def handle_connect():
     """客户端连接"""
     print(f"Client connected: {request.sid}")
-    emit('connected', {'data': 'Connected to UAV Safety Dashboard'})
-    
-    # 发送当前状态
-    emit('state_update', experiment_state)
+    # 不在这里emit，等待客户端请求状态
+    # emit('connected', {'data': 'Connected to UAV Safety Dashboard'})
+    # emit('state_update', experiment_state)
 
 
 @socketio.on('disconnect')
@@ -93,7 +92,7 @@ def initialize_experiment(methods: List[str], total_missions: int):
     socketio.emit('experiment_initialized', {
         'methods': methods,
         'total_missions': total_missions
-    }, broadcast=True)
+    })
 
 
 def update_mission(mission_idx: int, safety_correct: Dict[str, int], 
@@ -120,7 +119,7 @@ def update_mission(mission_idx: int, safety_correct: Dict[str, int],
         'efficiency_history': experiment_state['efficiency_history'],
         'cumulative_correct': safety_correct,
         'cumulative_eff_correct': eff_correct
-    }, broadcast=True)
+    })
 
 
 def finalize_experiment(metrics_table: Dict):
@@ -133,12 +132,12 @@ def finalize_experiment(metrics_table: Dict):
     socketio.emit('experiment_completed', {
         'final_metrics': metrics_table,
         'total_missions': experiment_state['total_missions']
-    }, broadcast=True)
+    })
 
 
 def run_dashboard(host='0.0.0.0', port=5000, debug=False):
     """启动Web服务"""
-    print(f"🌐 Starting UAV Safety Dashboard...")
+    print(f"[Dashboard] Starting UAV Safety Dashboard...")
     print(f"   Access at: http://{host}:{port}")
     socketio.run(app, host=host, port=port, debug=debug, allow_unsafe_werkzeug=True)
 
