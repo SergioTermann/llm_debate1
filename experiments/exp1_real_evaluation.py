@@ -9,8 +9,6 @@ from typing import List, Dict, Tuple
 from openai import OpenAI
 from sklearn.metrics import precision_recall_fscore_support, cohen_kappa_score
 from tqdm import tqdm
-from experiment_dashboard import ExperimentDashboard, MetricsComparisonPanel
-import web_dashboard
 
 
 class NumpyEncoder(json.JSONEncoder):
@@ -965,11 +963,22 @@ class RealMultiAgentDebateEvaluator:
     6. Uncertainty-aware decision making [NEW]
     """
     
-    def __init__(self, api_key: str, model: str = "Qwen/Qwen3-32B", max_rounds: int = 2, verbose: bool = False):
+    def __init__(self, api_key: str, model: str = "Qwen/Qwen3-32B", max_rounds: int = 2, verbose: bool = False,
+                 enable_role_rotation: bool = True, enable_evidence_verification: bool = True,
+                 ablation_settings: Dict = None):
         self.client = OpenAI(api_key=api_key, base_url="https://api.siliconflow.cn/v1")
         self.model = model
         self.verbose = verbose
         self.max_rounds = max_rounds
+        
+        # Ablation experiment settings
+        self.enable_role_rotation = ablation_settings.get('role_rotation', True) if ablation_settings else enable_role_rotation
+        self.enable_evidence_verification = ablation_settings.get('evidence_verification', True) if ablation_settings else enable_evidence_verification
+        self.enable_adversarial = ablation_settings.get('adversarial', True) if ablation_settings else True
+        self.enable_hierarchical = ablation_settings.get('hierarchical', True) if ablation_settings else True
+        
+        # Track current rotated roles
+        self.current_role_mapping = {0: 0, 1: 1, 2: 2, 3: 3}
         
         # Three Specialized Expert Agents (as per paper Section II.B)
         self.experts = [
@@ -1142,38 +1151,68 @@ You MUST structure your response as:
                 "complexity": H_comp
             }
         
-        # === STEP 2: Multi-round Expert Panel with Red/Blue Rotation ===
+        # === STEP 2: Multi-round Expert Panel with Role & Team Rotation ===
         all_rounds = []
+        emergent_issues = []
+        
         for round_idx in range(actual_max_rounds):
             print(f"\n    [Expert Panel Round {round_idx + 1}/{actual_max_rounds}]")
+            
+            # Dynamic Role Rotation (Paper Eq. 14-15)
+            if self.enable_role_rotation and round_idx > 0:
+                if len(emergent_issues) > 2:
+                    role_mapping = self._rotate_roles_adaptive(round_idx, emergent_issues)
+                    print(f"      [Role Rotation - Adaptive] {role_mapping}")
+                else:
+                    role_mapping = self._rotate_roles_round_robin(round_idx)
+                    print(f"      [Role Rotation - Round-Robin] {role_mapping}")
             
             # Red/Blue team assignment (Paper Eq. 11-12)
             red_ids, blue_ids = self._assign_red_blue_teams(round_idx)
             
             round_responses = []
             for expert in self.experts:
+                # Get rotated expert if role rotation is enabled
+                active_expert = self._get_rotated_expert(expert['id'])
                 team = "RED" if expert['id'] in red_ids else "BLUE"
                 
-                # Build prompt with team instructions
                 context = trajectory_summary
                 if round_idx > 0:
                     context += f"\n\n[PREVIOUS ROUND FEEDBACK]:\n{self._summarize_round(all_rounds[-1])}"
                 
-                # Meta-Debate: 添加标准对齐轮
                 if route_layer == "META_DEBATE" and round_idx == 0:
                     context += "\n\n[META-DEBATE ALIGNMENT]:\nFirst, define mission-specific evaluation standards before analysis."
                 
-                prompt = self._build_expert_prompt(expert, team, context)
-                response = self._call_llm(expert['system_prompt'], prompt)
+                prompt = self._build_expert_prompt(active_expert, team, context)
+                response = self._call_llm(active_expert['system_prompt'], prompt)
                 
-                # Parse Evidence Chain (Paper Section III.D)
                 parsed = self._parse_evidence_chain(response)
-                parsed['expert'] = expert['name']
+                parsed['expert'] = active_expert['name']
+                parsed['original_expert'] = expert['name']
                 parsed['team'] = team
                 
+                # Evidence Chain Verification (Paper Section III.D.1)
+                if self.enable_evidence_verification:
+                    is_valid, errors = self._verify_evidence_chain(parsed, drones[0]['trajectory'])
+                    if not is_valid:
+                        print(f"      [Evidence Warning] {active_expert['name']}: {errors[:1]}")
+                        intervention = self._inject_evidence_intervention(round_idx, errors)
+                        context += intervention
+                        prompt = self._build_expert_prompt(active_expert, team, context)
+                        response = self._call_llm(active_expert['system_prompt'], prompt)
+                        parsed = self._parse_evidence_chain(response)
+                        parsed['expert'] = active_expert['name']
+                        parsed['team'] = team
+                
                 round_responses.append(parsed)
-                debate_history.append(f"[R{round_idx+1}][{team}] {expert['name']}: {parsed.get('claim', '')[:80]}")
-                print(f"      [{team}] {expert['name']}: {parsed.get('claim', 'N/A')[:60]}...")
+                debate_history.append(f"[R{round_idx+1}][{team}] {active_expert['name']}: {parsed.get('claim', '')[:80]}")
+                print(f"      [{team}] {active_expert['name']}: {parsed.get('claim', 'N/A')[:60]}...")
+                
+                if round_idx == actual_max_rounds - 1:
+                    claim = parsed.get('claim', '').lower()
+                    for issue in ['collision', 'risk', 'safety', 'problem', 'instability']:
+                        if issue in claim:
+                            emergent_issues.append(issue)
             
             all_rounds.append(round_responses)
             
@@ -1531,6 +1570,101 @@ Include: specific metrics, trajectory segments, and quantitative data.
         blue_ids = [i for i in range(N) if i not in red_ids]
         
         return red_ids, blue_ids
+    
+    def _rotate_roles_round_robin(self, round_idx: int) -> Dict[int, int]:
+        """Dynamic Role Rotation - Round-Robin (Paper Eq. 14)
+        
+        Agent a_i at round r assumes the role of agent (i + r) mod N
+        This prevents perspective lock-in by cycling through different viewpoints.
+        """
+        N = len(self.experts)
+        new_mapping = {}
+        for orig_id in range(N):
+            new_mapping[orig_id] = (orig_id + round_idx) % N
+        self.current_role_mapping = new_mapping
+        return new_mapping
+    
+    def _rotate_roles_adaptive(self, round_idx: int, emergent_issues: List[str]) -> Dict[int, int]:
+        """Dynamic Role Rotation - Adaptive (Paper Eq. 15)
+        
+        Agents rotate based on expertise alignment with emergent issues from previous round.
+        Relevance(a_j, E) quantifies how well agent j's expertise matches the issues.
+        """
+        N = len(self.experts)
+        
+        # Define expertise keywords for each agent
+        expertise_keywords = {
+            0: ['smoothness', 'altitude', 'speed', 'trajectory', 'efficiency', 'rmse'],
+            1: ['formation', 'coordination', 'swarm', 'collective', 'communication'],
+            2: ['safety', 'risk', 'collision', 'emergency', 'boundary', 'envelope'],
+            3: ['uncertainty', 'quality', 'ambiguity', 'confidence', 'reliability']
+        }
+        
+        def relevance_score(agent_id: int, issues: List[str]) -> float:
+            keywords = set(expertise_keywords.get(agent_id, []))
+            issue_text = ' '.join(issues).lower()
+            score = sum(1 for kw in keywords if kw in issue_text)
+            return float(score)
+        
+        new_mapping = {}
+        for orig_id in range(N):
+            score = relevance_score(orig_id, emergent_issues)
+            new_mapping[orig_id] = score
+        
+        sorted_agents = sorted(new_mapping.keys(), key=lambda x: new_mapping[x], reverse=True)
+        for i, agent_id in enumerate(sorted_agents):
+            new_mapping[agent_id] = i
+        
+        self.current_role_mapping = new_mapping
+        return new_mapping
+    
+    def _get_rotated_expert(self, original_expert_id: int) -> Dict:
+        """Get the expert after role rotation"""
+        if not self.enable_role_rotation:
+            return self.experts[original_expert_id]
+        
+        rotated_id = self.current_role_mapping.get(original_expert_id, original_expert_id)
+        return self.experts[rotated_id]
+    
+    def _verify_evidence_chain(self, response: Dict, trajectory: List[Dict]) -> Tuple[bool, List[str]]:
+        """Evidence Chain Verification (Paper Section III.D.1)
+        
+        Validates that all DSL citations in the response actually exist in trajectory data.
+        Returns: (is_valid, validation_errors)
+        """
+        errors = []
+        evidence = response.get('evidence', [])
+        
+        for ev in evidence:
+            seg_matches = re.findall(r'SEG\[(\d+)\]', ev)
+            event_matches = re.findall(r'EVENT:\s*t=(\d+)', ev)
+            attn_matches = re.findall(r'ATTN\[(\d+)\]', ev)
+            
+            for seg_id in seg_matches:
+                seg_idx = int(seg_id)
+                max_seg = len(trajectory) // 30
+                if seg_idx > max_seg:
+                    errors.append(f"SEG[{seg_idx}] exceeds maximum segment index ({max_seg})")
+            
+            for t in event_matches:
+                time_point = int(t)
+                if time_point >= len(trajectory):
+                    errors.append(f"EVENT t={time_point} exceeds trajectory length ({len(trajectory)})")
+        
+        return len(errors) == 0, errors
+    
+    def _inject_evidence_intervention(self, round_idx: int, validation_errors: List[str]) -> str:
+        """Generate intervention message for evidence chain violations"""
+        return f"""
+[INTERVENTION - Evidence Chain Verification FAILED]:
+The following evidence citations are INVALID:
+{chr(10).join(f"- {e}" for e in validation_errors[:3])}
+
+INSTRUCTION: All claims must be backed by VERIFIABLE trajectory data.
+- Use SEG[n] where n is a valid segment index (0-{len(self.experts)})
+- Use EVENT: t=X where X is within trajectory time range
+- Avoid fabricating specific metrics that don't exist in the data
+"""
     
     def _build_expert_prompt(self, expert: Dict, team: str, context: str) -> str:
         """Build role-specific prompt with team instructions"""
