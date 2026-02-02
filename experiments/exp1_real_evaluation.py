@@ -2030,19 +2030,6 @@ def main():
     
     print("\n[3/5] Running evaluations...")
     
-    # 启动Web Dashboard服务
-    print("\n[Dashboard] Starting Web Dashboard Service...")
-    dashboard_thread = threading.Thread(target=web_dashboard.run_dashboard, 
-                                       kwargs={'host': '0.0.0.0', 'port': 5000, 'debug': False},
-                                       daemon=True)
-    dashboard_thread.start()
-    time.sleep(2)
-    print("[Dashboard] Running at: http://localhost:5000")
-    print("   Open this URL in your browser to see real-time results!")
-    
-    # 初始化实验
-    web_dashboard.initialize_experiment(list(evaluators.keys()), len(missions_to_evaluate))
-    
     # 累计统计
     cumulative_correct = {name: 0 for name in evaluators.keys()}
     cumulative_eff_correct = {name: 0 for name in evaluators.keys()}
@@ -2115,9 +2102,6 @@ def main():
             accuracy = cumulative_correct[name] / (idx + 1) * 100
             print(f"    {name:<25} {cumulative_correct[name]}/{idx+1} = {accuracy:.1f}%")
         
-        # 更新Web Dashboard
-        web_dashboard.update_mission(idx, cumulative_correct, cumulative_eff_correct)
-        
         time.sleep(0.3)
     
     ground_truth = [m['ground_truth']['safety_label'] for m in missions_to_evaluate]
@@ -2179,10 +2163,6 @@ def main():
     
     print("="*70)
     
-    # 完成实验，通知Web Dashboard
-    print("\n[Dashboard] Finalizing experiment...")
-    web_dashboard.finalize_experiment(metrics_table)
-    
     # 保存JSON结果
     output_file = "exp1_real_results.json"
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -2194,17 +2174,6 @@ def main():
         }, f, ensure_ascii=False, indent=2, cls=NumpyEncoder)
     
     print(f"\n[Result] Results saved to: {output_file}")
-    print("[Result] Dashboard is still running at: http://localhost:5000")
-    print("   Check the browser for comprehensive metrics comparison!")
-    
-    # 保持Web服务运行
-    print("\n[Dashboard] Web Dashboard is running. Press Ctrl+C to stop.")
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        print("\n[Dashboard] Shutting down...")
-        return
 
 
 if __name__ == "__main__":
