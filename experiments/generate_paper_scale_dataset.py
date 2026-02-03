@@ -9,31 +9,31 @@ random.seed(42)
 MISSION_TYPES = {
     "surveillance": {
         "count": 40,
-        "safety_profile": {"safe": 24, "borderline": 10, "risky": 6},
+        "safety_profile": {"safe": 20, "borderline": 12, "risky": 8},
         "complexity": "low"
     },
     "formation": {
         "count": 30,
-        "safety_profile": {"safe": 16, "borderline": 8, "risky": 6},
+        "safety_profile": {"safe": 12, "borderline": 10, "risky": 8},
         "complexity": "medium"
     },
     "search_rescue": {
         "count": 20,
-        "safety_profile": {"safe": 8, "borderline": 6, "risky": 6},
+        "safety_profile": {"safe": 6, "borderline": 7, "risky": 7},
         "complexity": "high"
     },
     "adversarial_intercept": {
         "count": 10,
-        "safety_profile": {"safe": 2, "borderline": 2, "risky": 6},
+        "safety_profile": {"safe": 1, "borderline": 2, "risky": 7},
         "complexity": "high"
     }
 }
 
 PROBLEMS = {
-    "low": ["gradual_drift", "minor_delay"],
-    "medium": ["formation_gap", "timing_offset", "altitude_variation"],
+    "low": ["gradual_drift", "minor_delay", "slight_altitude_drift"],
+    "medium": ["formation_gap", "timing_offset", "altitude_variation", "speed_fluctuation", "heading_instability"],
     "high": ["collision_course", "gps_glitch", "signal_loss", 
-             "emergency_evasion", "formation_break", "coordination_loss"]
+             "emergency_evasion", "formation_break", "coordination_loss", "multiple_anomalies", "severe_turbulence"]
 }
 
 def generate_trajectory(num_points: int = 150, base_altitude: float = 100.0,
@@ -48,23 +48,34 @@ def generate_trajectory(num_points: int = 150, base_altitude: float = 100.0,
     problems = problems or []
     has_gps_glitch = "gps_glitch" in problems
     has_signal_loss = "signal_loss" in problems
+    has_heading_instability = "heading_instability" in problems
+    has_severe_turbulence = "severe_turbulence" in problems
+    has_multiple_anomalies = "multiple_anomalies" in problems
     
     for t in range(num_points):
         if has_gps_glitch and 40 <= t <= 50:
-            lat += np.random.uniform(-0.005, 0.005)
-            lon += np.random.uniform(-0.005, 0.005)
+            lat += np.random.uniform(-0.008, 0.008)
+            lon += np.random.uniform(-0.008, 0.008)
         elif has_signal_loss and 30 <= t <= 45:
             signal = "LOST"
         else:
             signal = "OK"
         
-        heading += np.random.uniform(-3, 3)
+        if has_heading_instability:
+            heading += np.random.uniform(-15, 15)
+        else:
+            heading += np.random.uniform(-3, 3)
         heading = heading % 360
         
         if "altitude_variation" in problems and 20 <= t <= 60:
-            altitude = base_altitude + np.random.uniform(-20, 20)
+            altitude = base_altitude + np.random.uniform(-30, 30)
+        elif has_severe_turbulence and 50 <= t <= 80:
+            altitude = base_altitude + np.random.uniform(-40, 40)
         
-        speed = base_speed + np.random.uniform(-2, 2)
+        if "speed_fluctuation" in problems:
+            speed = base_speed + np.random.uniform(-8, 8)
+        else:
+            speed = base_speed + np.random.uniform(-2, 2)
         
         lat += np.cos(np.radians(heading)) * 0.0001
         lon += np.sin(np.radians(heading)) * 0.0001
@@ -80,7 +91,7 @@ def generate_trajectory(num_points: int = 150, base_altitude: float = 100.0,
             "gps_status": "DRIFT" if has_gps_glitch and 40 <= t <= 50 else "OK"
         })
         
-        altitude = max(50, altitude + np.random.uniform(-0.5, 0.5))
+        altitude = max(40, altitude + np.random.uniform(-1, 1))
     
     return trajectory
 
