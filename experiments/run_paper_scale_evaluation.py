@@ -12,9 +12,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from exp1_real_evaluation import RealSingleMetricEvaluator, RealFixedWeightEvaluator
 from exp1_real_evaluation import RealSingleAgentLLMEvaluator, RealMultiAgentDebateEvaluator
 
-api_key = "sk-pchlhkadtecinrftucdlwcxmahjawylrtdiiwzljdokdevroc"
+api_key = "sk-pchlhkadtecinrftucdlwcxmahjawylrtdiiwzljdokdevzc"
 
 DATASET_PATH = "complex_uav_missions_50.json"
+
 
 def compute_metrics(predictions, ground_truths):
     correct = sum(1 for p, g in zip(predictions, ground_truths) if p == g)
@@ -99,13 +100,7 @@ def main():
               f"{metrics['recall']:<12.2%} {metrics['f1_score']:<12.2%}")
     
     print("\n" + "="*80)
-    print("Detailed Comparison with Paper")
-    print("="*80)
-    print(f"\nPaper Results (50 missions):")
-    print(f"  Single-Metric: 62% Acc, 58% Precision, 71% Recall, 0.64 F1")
-    print(f"  Fixed-Weights: 71% Acc, 69% Precision, 78% Recall, 0.73 F1")
-    print(f"  Single-Agent:  74% Acc, 72% Precision, 81% Recall, 0.76 F1")
-    print(f"  Ours (Debate): 91% Acc, 89% Precision, 96% Recall, 0.92 F1")
+
     
     output_file = "paper_scale_results.json"
     output = {
@@ -125,6 +120,7 @@ def main():
         json.dump(output, f, ensure_ascii=False, indent=2)
     
     print(f"\n\nResults saved to: {output_file}")
+
 
 if __name__ == "__main__":
     main()

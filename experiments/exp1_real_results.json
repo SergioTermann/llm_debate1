@@ -1,250 +1,2273 @@
 {
   "dataset": "complex_uav_missions.json",
-  "num_missions": 10,
+  "num_missions": 100,
   "results": {
     "Single-Metric": [
       {
-        "mission_id": "COMPLEX_01_MULTI_LAYER_FORMATION",
-        "prediction": "Risky",
-        "efficiency_prediction": "High",
-        "score": 49.66319611203184,
-        "issues": []
-      },
-      {
-        "mission_id": "COMPLEX_02_COLLABORATIVE_SEARCH",
-        "prediction": "Risky",
+        "mission_id": "MISSION_04_SURVEILLANCE",
+        "prediction": "Safe",
         "efficiency_prediction": "Low",
-        "score": 42.28697361855223,
+        "score": 83.6614626394701,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_03_COLLABORATIVE_ATTACK",
-        "prediction": "Risky",
-        "efficiency_prediction": "High",
-        "score": 47.1401217053961,
+        "mission_id": "MISSION_01_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63735715072681,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_04_COLLABORATIVE_DEFENSE",
+        "mission_id": "MISSION_02_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64906501519252,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65766650360723,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6572903164278,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66284384640552,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_07_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65104908341357,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_08_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63585907428958,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_09_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63442473808843,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_10_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65650513204614,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_12_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64969005528104,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_13_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.68879227572477,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_15_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.67022870837945,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_11_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65324100740271,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_14_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65868199489344,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_16_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64019701308408,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_17_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63838237661857,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_18_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66861116209516,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_19_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66342602624151,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_20_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63189938294956,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_22_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65796297321971,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_24_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65410090661145,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_21_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65623319687947,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_25_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.67566237466397,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_23_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6690407321996,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_26_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65549939000257,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_27_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64057310962359,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_28_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65221175920792,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_29_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64577475159496,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_30_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66885114923281,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_31_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6328341218719,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_34_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64676789474767,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_33_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66057995516454,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_35_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.62611905085954,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_32_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.67020695687492,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_36_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6861647223691,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_37_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6529684705457,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_38_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.67314348859814,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_39_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65965729733458,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_40_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65605149878687,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_43_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6291641256792,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_45_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66416614449724,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_41_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6433836312641,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_44_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66213482257503,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_42_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63915271488965,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_46_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66813022953221,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_47_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65263655711065,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_48_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.67037655491403,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_49_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63694166831083,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_50_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65218162104985,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_51_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6878061205914,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_53_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63757700952061,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_52_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64967734232366,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_54_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64365646170197,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_55_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64776639936073,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_56_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64291049688222,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_57_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64298259493718,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_58_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64298599521338,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_59_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64165007010905,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_60_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.67504616895505,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_65_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64553722849232,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_61_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64086372186674,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_64_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65013629784231,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_62_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6423868756262,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_63_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64608841075261,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_66_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63301822066583,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_67_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66035226242762,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_68_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63974069297367,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_69_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65451910503646,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_70_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65078362814045,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_74_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.67042064593596,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_72_SEARCH_RESCUE",
         "prediction": "Borderline",
         "efficiency_prediction": "Low",
-        "score": 66.24108601675852,
-        "issues": []
-      },
-      {
-        "mission_id": "COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT",
-        "prediction": "Risky",
-        "efficiency_prediction": "High",
-        "score": 46.661236935375825,
-        "issues": []
-      },
-      {
-        "mission_id": "COMPLEX_06_FORMATION_BREAK_COLLISION",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 45.28326603804753,
-        "issues": []
-      },
-      {
-        "mission_id": "COMPLEX_07_GPS_GLITCH",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 17.398078198510888,
+        "score": 58.66660471794333,
         "issues": [
-          "GPS drift detected (50 points)"
+          "Signal loss detected (16 points)"
         ]
       },
       {
-        "mission_id": "COMPLEX_08_SIGNAL_LOSS",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 38.97104513336968,
-        "issues": []
-      },
-      {
-        "mission_id": "COMPLEX_09_EMERGENCY_EVASION",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 42.10471477871327,
-        "issues": []
-      },
-      {
-        "mission_id": "COMPLEX_10_COORDINATED_LANDING",
+        "mission_id": "MISSION_73_SEARCH_RESCUE",
         "prediction": "Safe",
-        "efficiency_prediction": "High",
-        "score": 77.25701740758211,
+        "efficiency_prediction": "Low",
+        "score": 83.65364862981716,
         "issues": []
+      },
+      {
+        "mission_id": "MISSION_71_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 58.65510045667918,
+        "issues": [
+          "Signal loss detected (16 points)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_75_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66809070515654,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_76_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.63607485985357,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_77_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.68190640427953,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_78_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64669017584968,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_79_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6541926813309,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_80_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 58.641601337427616,
+        "issues": [
+          "Signal loss detected (16 points)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_82_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.6886629959944,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_81_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66062997326705,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_84_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64593176746625,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_83_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.67453178116156,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_85_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66312058850566,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_86_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66824955405811,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_87_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.62755886362535,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_88_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66265301743907,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_89_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64763163317556,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_90_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64375466014069,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_91_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64625075835576,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_94_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64436231008854,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_92_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.67453309793702,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_95_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65402748423588,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_93_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 58.67353654920055,
+        "issues": [
+          "Signal loss detected (16 points)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_96_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.66170135827275,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_97_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.64571631750192,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_98_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 58.66241696312588,
+        "issues": [
+          "Signal loss detected (16 points)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_99_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.65713130346012,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_100_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 58.66864593605358,
+        "issues": [
+          "Signal loss detected (16 points)"
+        ]
       }
     ],
     "Fixed-Weight": [
       {
-        "mission_id": "COMPLEX_01_MULTI_LAYER_FORMATION",
-        "prediction": "Risky",
-        "efficiency_prediction": "High",
-        "score": 24.589067407088905,
-        "issues": [
-          "Poor formation stability (score: 49.9)",
-          "Poor coordination quality (score: 15.3)",
-          "Close formation detected (min distance: 19.5m)"
-        ]
-      },
-      {
-        "mission_id": "COMPLEX_02_COLLABORATIVE_SEARCH",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 20.483491307307865,
-        "issues": [
-          "Poor coordination quality (score: 18.4)",
-          "Close formation detected (min distance: 16.7m)"
-        ]
-      },
-      {
-        "mission_id": "COMPLEX_03_COLLABORATIVE_ATTACK",
-        "prediction": "Risky",
-        "efficiency_prediction": "High",
-        "score": 16.93651043386553,
-        "issues": [
-          "Poor coordination quality (score: 16.0)",
-          "Close formation detected (min distance: 0.0m)"
-        ]
-      },
-      {
-        "mission_id": "COMPLEX_04_COLLABORATIVE_DEFENSE",
+        "mission_id": "MISSION_01_SURVEILLANCE",
         "prediction": "Borderline",
         "efficiency_prediction": "Low",
-        "score": 57.8419925128556,
+        "score": 64.682958292225,
         "issues": [
-          "Poor coordination quality (score: 10.1)"
+          "Close formation detected (min distance: 1.3m)"
         ]
       },
       {
-        "mission_id": "COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT",
-        "prediction": "Risky",
-        "efficiency_prediction": "High",
-        "score": 36.014381504919605,
-        "issues": [
-          "Poor formation stability (score: 53.0)",
-          "Poor coordination quality (score: 22.7)"
-        ]
-      },
-      {
-        "mission_id": "COMPLEX_06_FORMATION_BREAK_COLLISION",
-        "prediction": "Risky",
+        "mission_id": "MISSION_05_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Low",
-        "score": 18.947927559727333,
+        "score": 63.0232371341023,
         "issues": [
-          "Poor coordination quality (score: 31.7)",
-          "Close formation detected (min distance: 9.8m)"
+          "Close formation detected (min distance: 5.1m)"
         ]
       },
       {
-        "mission_id": "COMPLEX_07_GPS_GLITCH",
-        "prediction": "Risky",
+        "mission_id": "MISSION_02_SURVEILLANCE",
+        "prediction": "Safe",
         "efficiency_prediction": "Low",
-        "score": 2.39032810476656,
-        "issues": [
-          "Poor coordination quality (score: 19.6)",
-          "GPS drift detected (300 points, 6 drones)"
-        ]
+        "score": 84.25874704679627,
+        "issues": []
       },
       {
-        "mission_id": "COMPLEX_08_SIGNAL_LOSS",
-        "prediction": "Risky",
+        "mission_id": "MISSION_04_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Low",
-        "score": 3.4367829840170856,
+        "score": 63.905776698467704,
         "issues": [
-          "Poor coordination quality (score: 32.3)",
-          "Signal loss detected (77 points, 5 drones)",
-          "Close formation detected (min distance: 4.3m)"
+          "Close formation detected (min distance: 1.3m)"
         ]
       },
       {
-        "mission_id": "COMPLEX_09_EMERGENCY_EVASION",
-        "prediction": "Risky",
+        "mission_id": "MISSION_03_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Low",
-        "score": 38.27997825326399,
+        "score": 63.910161165658735,
         "issues": [
-          "Poor coordination quality (score: 10.6)"
+          "Close formation detected (min distance: 1.3m)"
         ]
       },
       {
-        "mission_id": "COMPLEX_10_COORDINATED_LANDING",
-        "prediction": "Risky",
-        "efficiency_prediction": "High",
-        "score": 37.79691134905967,
+        "mission_id": "MISSION_06_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 74.57426353111978,
         "issues": [
-          "Poor formation stability (score: 59.1)",
-          "Poor coordination quality (score: 40.9)",
-          "Close formation detected (min distance: 0.0m)"
+          "Close formation detected (min distance: 17.4m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_07_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 62.835588241838764,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_08_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 85.00008486388374,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_09_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 74.68246130000355,
+        "issues": [
+          "Close formation detected (min distance: 16.5m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_10_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.02542537904901,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_15_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.47268106966057,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_14_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 85.0192453529146,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_13_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.69809093341134,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_11_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 74.734604103058,
+        "issues": [
+          "Close formation detected (min distance: 16.8m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_12_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.236581340259875,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_16_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.05358387890657,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_17_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 62.84672237488428,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_18_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.01677428958483,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_19_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 74.55533514105488,
+        "issues": [
+          "Close formation detected (min distance: 17.4m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_20_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 85.7119989236104,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_25_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 85.12545843022366,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_24_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.04165984689395,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_21_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.68678168288274,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_23_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.67913898549106,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_22_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 85.71264013402244,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_26_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.67109856065275,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_27_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.903385388329085,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_28_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 85.72917957739651,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_29_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.52887536909675,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_30_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 74.05822510276563,
+        "issues": [
+          "Close formation detected (min distance: 19.7m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_31_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.72577081421466,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_33_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.50040618962245,
+        "issues": [
+          "Close formation detected (min distance: 7.5m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_32_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 62.84471960335769,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_34_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.27752253521348,
+        "issues": [
+          "Close formation detected (min distance: 0.6m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_35_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.99473536328509,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_36_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.05015564079068,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_37_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.04389528971144,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_38_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.53772801398249,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_39_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.99419073238825,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_40_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.01832955676818,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_44_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.6852419180008,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_42_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 74.19076438618791,
+        "issues": [
+          "Close formation detected (min distance: 17.7m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_43_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.01830618935534,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_45_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.24352658548243,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_41_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.9909591359801,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_46_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.0178534271364,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_47_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.74591997826322,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_48_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.53075786057514,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_49_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.73211612808015,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_50_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 85.57022321031542,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_52_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.01980421191686,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_54_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.89850899099199,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_53_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.51680692244142,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_55_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.498585087839075,
+        "issues": [
+          "Close formation detected (min distance: 8.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_51_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.27467040728092,
+        "issues": [
+          "Close formation detected (min distance: 0.6m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_56_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.74808793198663,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_57_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 74.50421279207276,
+        "issues": [
+          "Close formation detected (min distance: 10.4m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_58_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.023139691340205,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_59_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 62.83639061674437,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_60_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.0493968326619,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_65_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 74.55198473025426,
+        "issues": [
+          "Close formation detected (min distance: 17.4m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_62_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 74.36166500305877,
+        "issues": [
+          "Close formation detected (min distance: 14.5m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_61_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.22439100236052,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_64_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.53385484603774,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_63_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.26576857973907,
+        "issues": [
+          "Close formation detected (min distance: 0.6m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_66_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.72160039512465,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_67_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.35314044337497,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_68_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 83.52243622562422,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_69_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.52189501546572,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_70_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 62.84183760984959,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_73_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 62.85397970755048,
+        "issues": [
+          "Close formation detected (min distance: 0.7m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_75_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.74278976714038,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_72_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.235332630847566,
+        "issues": [
+          "Signal loss detected (16 points, 1 drones)",
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_74_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.23534713503439,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_71_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.22367253189299,
+        "issues": [
+          "Signal loss detected (16 points, 1 drones)",
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_76_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.23682816612653,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_77_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.263033949166314,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_78_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.047939335872,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_79_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.52865585937825,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_80_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.26140292567325,
+        "issues": [
+          "Signal loss detected (16 points, 1 drones)",
+          "Close formation detected (min distance: 0.6m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_84_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.56454453204474,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_83_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.90660966426424,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_85_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 85.3762719571005,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_82_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.52673671384575,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_81_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.55903072675463,
+        "issues": [
+          "Close formation detected (min distance: 7.4m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_86_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.26935005763178,
+        "issues": [
+          "Close formation detected (min distance: 0.6m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_87_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 74.55866178388372,
+        "issues": [
+          "Close formation detected (min distance: 17.4m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_88_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.89530845228644,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_89_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.01427424038242,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_90_SEARCH_RESCUE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 85.00854293504611,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_92_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.11178155703489,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_91_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.71048126582414,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_95_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 84.70756089602344,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_94_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.02127712073634,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_93_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.03397526820237,
+        "issues": [
+          "Signal loss detected (16 points, 1 drones)",
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_96_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.90193125518955,
+        "issues": [
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_97_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 85.57286269545892,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_98_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.902137736943146,
+        "issues": [
+          "Signal loss detected (16 points, 1 drones)",
+          "Close formation detected (min distance: 1.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_99_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 63.23626356727222,
+        "issues": [
+          "Close formation detected (min distance: 5.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_100_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Low",
+        "score": 64.26971920250676,
+        "issues": [
+          "Signal loss detected (16 points, 1 drones)",
+          "Close formation detected (min distance: 0.6m)"
         ]
       }
     ],
     "Single-Agent-LLM": [
       {
-        "mission_id": "COMPLEX_01_MULTI_LAYER_FORMATION",
-        "prediction": "Risky",
+        "mission_id": "MISSION_01_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 50.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 90.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_08_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_07_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_02_COLLABORATIVE_SEARCH",
-        "prediction": "Risky",
+        "mission_id": "MISSION_09_SURVEILLANCE",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 50.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_10_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_03_COLLABORATIVE_ATTACK",
-        "prediction": "Risky",
+        "mission_id": "MISSION_12_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_04_COLLABORATIVE_DEFENSE",
-        "prediction": "Risky",
+        "mission_id": "MISSION_11_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT",
-        "prediction": "Risky",
+        "mission_id": "MISSION_13_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_06_FORMATION_BREAK_COLLISION",
-        "prediction": "Risky",
+        "mission_id": "MISSION_15_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_07_GPS_GLITCH",
-        "prediction": "Risky",
+        "mission_id": "MISSION_14_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_08_SIGNAL_LOSS",
-        "prediction": "Risky",
+        "mission_id": "MISSION_16_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_09_EMERGENCY_EVASION",
-        "prediction": "Risky",
+        "mission_id": "MISSION_18_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_10_COORDINATED_LANDING",
+        "mission_id": "MISSION_17_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_19_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_20_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_24_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_22_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_25_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_23_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_21_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_28_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_26_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_27_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_29_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_30_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_32_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_31_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_35_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_34_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_33_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_37_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_36_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_38_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_39_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_40_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_42_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_43_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_41_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_45_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_44_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_47_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_48_FORMATION",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_46_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_49_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_50_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_51_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_53_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_54_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_52_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_55_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_56_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_58_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_57_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_59_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_60_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_64_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_62_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_61_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_63_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_65_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_67_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_66_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_68_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_69_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_70_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_73_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_75_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_74_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_72_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_71_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_77_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_78_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_76_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_79_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_80_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_83_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_81_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_85_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_82_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_84_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_87_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_88_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_86_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_89_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_90_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_93_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 92.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_95_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 97.5,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_92_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 94.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_94_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_91_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_96_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 94.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_97_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_99_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_98_ADVERSARIAL_INTERCEPT",
+        "prediction": "Safe",
+        "efficiency_prediction": "Low",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_100_ADVERSARIAL_INTERCEPT",
         "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
@@ -253,70 +2276,700 @@
     ],
     "Multi-Agent-Debate": [
       {
-        "mission_id": "COMPLEX_01_MULTI_LAYER_FORMATION",
-        "prediction": "Risky",
+        "mission_id": "MISSION_01_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_02_COLLABORATIVE_SEARCH",
-        "prediction": "Risky",
+        "mission_id": "MISSION_07_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_03_COLLABORATIVE_ATTACK",
-        "prediction": "Risky",
+        "mission_id": "MISSION_10_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_04_COLLABORATIVE_DEFENSE",
-        "prediction": "Risky",
+        "mission_id": "MISSION_09_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_05_DYNAMIC_ROLE_ASSIGNMENT",
-        "prediction": "Risky",
+        "mission_id": "MISSION_05_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_06_FORMATION_BREAK_COLLISION",
-        "prediction": "Risky",
+        "mission_id": "MISSION_04_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_07_GPS_GLITCH",
-        "prediction": "Risky",
+        "mission_id": "MISSION_08_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_08_SIGNAL_LOSS",
-        "prediction": "Risky",
+        "mission_id": "MISSION_02_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_09_EMERGENCY_EVASION",
-        "prediction": "Risky",
+        "mission_id": "MISSION_06_SURVEILLANCE",
+        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
         "issues": []
       },
       {
-        "mission_id": "COMPLEX_10_COORDINATED_LANDING",
+        "mission_id": "MISSION_03_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_13_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_11_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_14_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_12_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_15_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_17_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_16_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_18_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_19_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_20_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_24_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_21_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_22_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_23_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_25_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_26_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_27_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_28_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_29_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_30_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_31_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_35_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_33_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_34_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_32_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_37_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_36_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_38_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_39_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_40_SURVEILLANCE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_41_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_44_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_47_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_50_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_45_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_43_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_46_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_49_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_42_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_48_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_55_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_54_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_53_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_52_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_51_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_56_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_57_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_58_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_59_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_60_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_64_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_61_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_65_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_63_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_62_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_67_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_66_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_68_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_69_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_70_FORMATION",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_72_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_77_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_71_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_75_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_73_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_78_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_79_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_80_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_76_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_74_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_81_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_83_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_82_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_84_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_85_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_87_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_86_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_89_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_88_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_90_SEARCH_RESCUE",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_92_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_91_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_99_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_100_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_93_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_96_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_94_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_97_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_95_ADVERSARIAL_INTERCEPT",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_98_ADVERSARIAL_INTERCEPT",
         "prediction": "Borderline",
         "efficiency_prediction": "Medium",
         "score": 50,
@@ -326,32 +2979,128 @@
   },
   "metrics": {
     "Single-Metric": {
-      "accuracy": 0.8,
-      "precision": 1.0,
-      "recall": 0.8888888888888888,
-      "f1_score": 0.9411764705882353,
-      "efficiency_accuracy": 0.6
+      "accuracy": 0.52,
+      "precision": 0.2884160756501182,
+      "recall": 0.358974358974359,
+      "f1_score": 0.27314814814814814,
+      "weighted_precision": 0.35262411347517725,
+      "weighted_recall": 0.52,
+      "weighted_f1": 0.37972222222222224,
+      "per_class": {
+        "Safe": {
+          "precision": 0.5319148936170213,
+          "recall": 1.0,
+          "f1": 0.6944444444444444,
+          "support": 50
+        },
+        "Borderline": {
+          "precision": 0.3333333333333333,
+          "recall": 0.07692307692307693,
+          "f1": 0.125,
+          "support": 26
+        },
+        "Risky": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 24
+        }
+      },
+      "human_agreement_kappa": 0.12,
+      "efficiency_accuracy": 0.1
     },
     "Fixed-Weight": {
-      "accuracy": 0.8,
-      "precision": 0.8888888888888888,
-      "recall": 0.8888888888888888,
-      "f1_score": 0.8888888888888888,
-      "efficiency_accuracy": 0.6
+      "accuracy": 0.33,
+      "precision": 0.26507276507276506,
+      "recall": 0.3369230769230769,
+      "f1_score": 0.2494736842105263,
+      "weighted_precision": 0.33598752598752596,
+      "weighted_recall": 0.33,
+      "weighted_f1": 0.2830105263157895,
+      "per_class": {
+        "Safe": {
+          "precision": 0.5384615384615384,
+          "recall": 0.28,
+          "f1": 0.3684210526315789,
+          "support": 50
+        },
+        "Borderline": {
+          "precision": 0.25675675675675674,
+          "recall": 0.7307692307692307,
+          "f1": 0.38,
+          "support": 26
+        },
+        "Risky": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 24
+        }
+      },
+      "human_agreement_kappa": 0.040000000000000036,
+      "efficiency_accuracy": 0.1
     },
     "Single-Agent-LLM": {
-      "accuracy": 1.0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1_score": 1.0,
-      "efficiency_accuracy": 0.6
+      "accuracy": 0.34,
+      "precision": 0.3080557524214505,
+      "recall": 0.3682051282051282,
+      "f1_score": 0.25012551919302567,
+      "weighted_precision": 0.3955776045357902,
+      "weighted_recall": 0.34,
+      "weighted_f1": 0.2739038751198138,
+      "per_class": {
+        "Safe": {
+          "precision": 0.6470588235294118,
+          "recall": 0.22,
+          "f1": 0.3283582089552239,
+          "support": 50
+        },
+        "Borderline": {
+          "precision": 0.27710843373493976,
+          "recall": 0.8846153846153846,
+          "f1": 0.42201834862385323,
+          "support": 26
+        },
+        "Risky": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 24
+        }
+      },
+      "human_agreement_kappa": 0.09999999999999998,
+      "efficiency_accuracy": 0.27
     },
     "Multi-Agent-Debate": {
-      "accuracy": 1.0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1_score": 1.0,
-      "efficiency_accuracy": 0.6
+      "accuracy": 0.26,
+      "precision": 0.08666666666666667,
+      "recall": 0.3333333333333333,
+      "f1_score": 0.13756613756613756,
+      "weighted_precision": 0.0676,
+      "weighted_recall": 0.26,
+      "weighted_f1": 0.10730158730158729,
+      "per_class": {
+        "Safe": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 50
+        },
+        "Borderline": {
+          "precision": 0.26,
+          "recall": 1.0,
+          "f1": 0.4126984126984127,
+          "support": 26
+        },
+        "Risky": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 24
+        }
+      },
+      "human_agreement_kappa": 0.0,
+      "efficiency_accuracy": 0.2
     }
   }
 }

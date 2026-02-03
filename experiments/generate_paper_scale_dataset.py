@@ -8,23 +8,23 @@ random.seed(42)
 
 MISSION_TYPES = {
     "surveillance": {
-        "count": 20,
-        "safety_profile": {"safe": 12, "borderline": 5, "risky": 3},
+        "count": 40,
+        "safety_profile": {"safe": 24, "borderline": 10, "risky": 6},
         "complexity": "low"
     },
     "formation": {
-        "count": 15,
-        "safety_profile": {"safe": 8, "borderline": 4, "risky": 3},
+        "count": 30,
+        "safety_profile": {"safe": 16, "borderline": 8, "risky": 6},
         "complexity": "medium"
     },
     "search_rescue": {
-        "count": 10,
-        "safety_profile": {"safe": 4, "borderline": 3, "risky": 3},
+        "count": 20,
+        "safety_profile": {"safe": 8, "borderline": 6, "risky": 6},
         "complexity": "high"
     },
     "adversarial_intercept": {
-        "count": 5,
-        "safety_profile": {"safe": 1, "borderline": 1, "risky": 3},
+        "count": 10,
+        "safety_profile": {"safe": 2, "borderline": 2, "risky": 6},
         "complexity": "high"
     }
 }
@@ -239,7 +239,7 @@ def generate_mission(mission_id: str, mission_type: str, idx: int) -> Dict:
         }
     }
 
-print("Generating 50 UAV missions (Paper Scale)...")
+print("Generating 100 UAV missions (Paper Scale)...")
 print("="*60)
 
 missions = []
@@ -252,7 +252,7 @@ for mtype, config in MISSION_TYPES.items():
         mission = generate_mission(mission_id, mtype, mission_counter)
         missions.append(mission)
         mission_counter += 1
-        print(f"  [{mission_counter}/50] {mission_id}: {mission['ground_truth']['safety_label']}")
+        print(f"  [{mission_counter}/100] {mission_id}: {mission['ground_truth']['safety_label']}")
 
 dataset = {
     "dataset_info": {
@@ -265,7 +265,7 @@ dataset = {
     "missions": missions
 }
 
-output_file = "complex_uav_missions_50.json"
+output_file = "complex_uav_missions.json"
 with open(output_file, 'w', encoding='utf-8') as f:
     json.dump(dataset, f, ensure_ascii=False, indent=2)
 

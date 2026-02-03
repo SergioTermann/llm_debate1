@@ -3,12 +3,12 @@ import os
 import time
 import math
 import re
-import threading
 import numpy as np
 from typing import List, Dict, Tuple
 from openai import OpenAI
 from sklearn.metrics import precision_recall_fscore_support, cohen_kappa_score
 from tqdm import tqdm
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 class NumpyEncoder(json.JSONEncoder):
@@ -842,13 +842,27 @@ SCORE: [Your confidence score 0-100]
         
         try:
             print(f"    Calling LLM API...", end=" ", flush=True)
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.7,
-                timeout=30.0
-            )
-            print("Response received", flush=True)
+            for attempt in range(3):
+                try:
+                    response = self.client.chat.completions.create(
+                        model=self.model,
+                        messages=[{"role": "user", "content": prompt}],
+                        temperature=0.7,
+                        timeout=30.0
+                    )
+                    print("Response received", flush=True)
+                    break
+                except Exception as e:
+                    error_str = str(e)
+                    if "429" in error_str or "rate limiting" in error_str.lower():
+                        wait_time = 2 ** attempt
+                        print(f"Rate limited. Waiting {wait_time}s before retry (attempt {attempt + 1}/3)...")
+                        time.sleep(wait_time)
+                    elif attempt == 2:
+                        raise e
+                    else:
+                        print(f"LLM Error: {e}. Retrying...")
+                        time.sleep(1)
             
             response_text = response.choices[0].message.content
             
@@ -1248,9 +1262,9 @@ You MUST structure your response as:
             override_to_risky = False
             
             # Issue 1: Critical unobservable issues (GPS drift, signal loss)
-            # Use the detector from FixedWeightEvaluator
-            from exp1_real_evaluation import FixedWeightEvaluator
-            unobservable_detector = FixedWeightEvaluator(self.api_key)
+            # Use the detector from RealFixedWeightEvaluator
+            from exp1_real_evaluation import RealFixedWeightEvaluator
+            unobservable_detector = RealFixedWeightEvaluator(self.api_key)
             unobservable = unobservable_detector.detect_unobservable_issues_all(drones) if hasattr(unobservable_detector, 'detect_unobservable_issues_all') else unobservable_detector.detect_unobservable_issues(drones)
             if unobservable.get('has_critical_issues', False):
                 override_to_risky = True
@@ -1303,20 +1317,31 @@ You MUST structure your response as:
             "final_quality": quality
         }
 
-    def _call_llm(self, system, user):
-        try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {"role": "system", "content": system},
-                    {"role": "user", "content": user}
-                ],
-                temperature=0.7
-            )
-            return response.choices[0].message.content
-        except Exception as e:
-            print(f"LLM Error: {e}")
-            return "Error"
+    def _call_llm(self, system, user, max_retries=3):
+        for attempt in range(max_retries):
+            try:
+                response = self.client.chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": user}
+                    ],
+                    temperature=0.7
+                )
+                return response.choices[0].message.content
+            except Exception as e:
+                error_str = str(e)
+                if "429" in error_str or "rate limiting" in error_str.lower():
+                    wait_time = 2 ** attempt
+                    print(f"Rate limited. Waiting {wait_time}s before retry (attempt {attempt + 1}/{max_retries})...")
+                    time.sleep(wait_time)
+                elif attempt == max_retries - 1:
+                    print(f"LLM Error: {e}")
+                    return "Error"
+                else:
+                    print(f"LLM Error: {e}. Retrying...")
+                    time.sleep(1)
+        return "Error"
 
     def _extract_score(self, text):
         import re
@@ -1996,6 +2021,44 @@ def compute_human_agreement(predictions: List[str], human_labels: List[List[str]
     return kappa
 
 
+def evaluate_single_evaluator(args):
+    """评估单个mission的单个评估器 - 用于并行执行"""
+    mission_idx, mission, evaluator_name, evaluator = args
+    mission_id = mission['mission_id']
+    
+    try:
+        result = evaluator.evaluate(mission)
+        prediction = result['safety_label']
+        eff_pred = result.get('efficiency_label', 'Medium')
+        
+        result_data = {
+            "mission_id": mission_id,
+            "prediction": prediction,
+            "efficiency_prediction": eff_pred,
+            "score": result.get('score', 0),
+            "issues": result.get('issues_identified', [])
+        }
+    except Exception as e:
+        result_data = {
+            "mission_id": mission_id,
+            "prediction": "Borderline",
+            "efficiency_prediction": "Medium",
+            "score": 50,
+            "issues": []
+        }
+        prediction = "Borderline"
+        eff_pred = "Medium"
+    
+    return {
+        "mission_idx": mission_idx,
+        "mission_id": mission_id,
+        "evaluator_name": evaluator_name,
+        "result": result_data,
+        "prediction": prediction,
+        "eff_prediction": eff_pred
+    }
+
+
 def main():
     api_key = "sk-pchlhkadtecinrftucdlwcxmahjawylrtdiiwzljdokdevzc"
     if not api_key:
@@ -2004,7 +2067,7 @@ def main():
         return
     
     print("="*80)
-    print("EXPERIMENT 1: Real Evaluation (No Data Leakage)")
+    print("EXPERIMENT 1: Real Evaluation (No Data Leakage) - PARALLEL MODE")
     print("="*80)
     
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -2024,85 +2087,107 @@ def main():
     }
     
     missions_to_evaluate = missions
-    print(f"\nEvaluating {len(missions_to_evaluate)} missions (SCENARIO MODE)")
+    print(f"\nEvaluating {len(missions_to_evaluate)} missions with {len(evaluators)} evaluators")
+    print(f"Total parallel tasks: {len(missions_to_evaluate) * len(evaluators)}")
     
     results = {name: [] for name in evaluators.keys()}
+    efficiency_ground_truth = []
     
-    print("\n[3/5] Running evaluations...")
+    print("\n[3/5] Running evaluations in BATCHES (10 missions per batch)...")
     
-    # 累计统计
+    batch_size = 10
+    num_batches = (len(missions_to_evaluate) + batch_size - 1) // batch_size
+    
+    completed_results = []
+    correct_counts = {name: 0 for name in evaluators.keys()}
+    
+    for batch_idx in range(num_batches):
+        start_idx = batch_idx * batch_size
+        end_idx = min((batch_idx + 1) * batch_size, len(missions_to_evaluate))
+        batch_missions = missions_to_evaluate[start_idx:end_idx]
+        
+        print(f"\n{'='*80}")
+        print(f"BATCH {batch_idx + 1}/{num_batches}: Missions {start_idx + 1}-{end_idx}")
+        print(f"{'='*80}")
+        
+        task_args = []
+        for mission_idx in range(start_idx, end_idx):
+            mission = missions_to_evaluate[mission_idx]
+            for evaluator_name, evaluator in evaluators.items():
+                task_args.append((mission_idx, mission, evaluator_name, evaluator))
+        
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            future_to_task = {executor.submit(evaluate_single_evaluator, args): args 
+                             for args in task_args}
+            
+            for future in as_completed(future_to_task):
+                args = future_to_task[future]
+                try:
+                    result = future.result()
+                    completed_results.append(result)
+                    
+                    mission_idx = result['mission_idx']
+                    gt_safety = missions_to_evaluate[mission_idx]['ground_truth']['safety_label']
+                    evaluator_name = result['evaluator_name']
+                    prediction = result['prediction']
+                    
+                    if prediction == gt_safety:
+                        correct_counts[evaluator_name] += 1
+                    
+                    completed = len(completed_results)
+                    total = len(missions_to_evaluate) * len(evaluators)
+                    print(f"\rProgress: {completed}/{total} | ", end="")
+                    for name in evaluators.keys():
+                        acc = correct_counts[name] / len(missions_to_evaluate) * 100
+                        print(f"{name}: {acc:.1f}%  ", end="")
+                    print(flush=True)
+                    
+                except Exception as e:
+                    mission_idx, mission, evaluator_name, _ = args
+                    print(f"\n[Error] Mission {mission_idx+1} {evaluator_name} failed: {e}")
+        
+        batch_acc = {}
+        for name in evaluators.keys():
+            batch_acc[name] = correct_counts[name] / (end_idx) * 100
+        
+        print(f"\nBatch {batch_idx + 1} completed. Current accuracy: ", end="")
+        for name, acc in batch_acc.items():
+            print(f"{name}: {acc:.1f}%  ", end="")
+        print()
+    
+    print("\n\n[4/5] Organizing results...")
+    
+    for result in completed_results:
+        evaluator_name = result['evaluator_name']
+        results[evaluator_name].append(result['result'])
+    
+    for mission in missions_to_evaluate:
+        efficiency_ground_truth.append(mission['ground_truth']['efficiency_label'])
+    
     cumulative_correct = {name: 0 for name in evaluators.keys()}
     cumulative_eff_correct = {name: 0 for name in evaluators.keys()}
     
-    efficiency_ground_truth = []
+    for result in completed_results:
+        mission_idx = result['mission_idx']
+        gt_safety = missions_to_evaluate[mission_idx]['ground_truth']['safety_label']
+        eff_gt = missions_to_evaluate[mission_idx]['ground_truth']['efficiency_label']
+        
+        evaluator_name = result['evaluator_name']
+        prediction = result['prediction']
+        eff_pred = result['eff_prediction']
+        
+        if prediction == gt_safety:
+            cumulative_correct[evaluator_name] += 1
+        
+        if eff_pred == eff_gt:
+            cumulative_eff_correct[evaluator_name] += 1
     
-    for idx, mission in enumerate(missions_to_evaluate):
-        # 使用数据集中已有的Efficiency Ground Truth
-        eff_gt = mission['ground_truth']['efficiency_label']
-        efficiency_ground_truth.append(eff_gt)
-
-        print(f"\n{'='*70}")
-        print(f"Evaluating mission {idx+1}/{len(missions_to_evaluate)}: {mission['mission_id']}")
-        print(f"{'='*70}")
-        gt_safety = mission['ground_truth']['safety_label']
-        print(f"Ground Truth: Safety={gt_safety} | Efficiency={eff_gt}")
-        
-        mission_predictions = {}
-        eff_predictions = {}
-        
-        for name, evaluator in evaluators.items():
-            print(f"  - {name}...", end=" ", flush=True)
-            try:
-                result = evaluator.evaluate(mission)
-                prediction = result['safety_label']
-                eff_pred = result.get('efficiency_label', 'Medium')
-                
-                results[name].append({
-                    "mission_id": mission['mission_id'],
-                    "prediction": prediction,
-                    "efficiency_prediction": eff_pred,
-                    "score": result.get('score', 0),
-                    "issues": result.get('issues_identified', [])
-                })
-                mission_predictions[name] = prediction
-                eff_predictions[name] = eff_pred
-                print(f"Done: {prediction} | Eff: {eff_pred}")
-            except Exception as e:
-                print(f"Error: {e}")
-                results[name].append({
-                    "mission_id": mission['mission_id'],
-                    "prediction": "Borderline",
-                    "efficiency_prediction": "Medium",
-                    "score": 50,
-                    "issues": []
-                })
-                mission_predictions[name] = "Borderline"
-                eff_predictions[name] = "Medium"
-        
-        # 立即打印该mission的结果对比
-        print(f"\n  Result Summary for {mission['mission_id']}:")
-        print(f"  {'Method':<20} {'Safety':<12} {'S-Status':<10} {'Efficiency':<10} {'E-Status':<10}")
-        print(f"  {'-'*65}")
-        for name, pred in mission_predictions.items():
-            eff_pred = eff_predictions[name]
-            
-            is_correct = pred == gt_safety
-            status = "[OK]" if is_correct else "[NO]"
-            if is_correct: cumulative_correct[name] += 1
-            
-            is_eff_correct = eff_pred == eff_gt
-            eff_status = "[OK]" if is_eff_correct else "[NO]"
-            if is_eff_correct: cumulative_eff_correct[name] += 1
-            
-            print(f"  {name:<20} {pred:<12} {status:<10} {eff_pred:<10} {eff_status:<10}")
-        
-        # 显示累计准确率
-        print(f"\n  Cumulative Accuracy (Safety):")
-        for name in evaluators.keys():
-            accuracy = cumulative_correct[name] / (idx + 1) * 100
-            print(f"    {name:<25} {cumulative_correct[name]}/{idx+1} = {accuracy:.1f}%")
-        
-        time.sleep(0.3)
+    print("\n" + "="*80)
+    print("FINAL RESULTS - Safety Accuracy")
+    print("="*80)
+    for name in evaluators.keys():
+        accuracy = cumulative_correct[name] / len(missions_to_evaluate) * 100
+        print(f"  {name:<25} {cumulative_correct[name]}/{len(missions_to_evaluate)} = {accuracy:.1f}%")
     
     ground_truth = [m['ground_truth']['safety_label'] for m in missions_to_evaluate]
     human_labels = [[m['ground_truth']['safety_label']] * 3 for m in missions_to_evaluate]
@@ -2112,20 +2197,17 @@ def main():
         predictions = [r['prediction'] for r in results[name]]
         eff_preds = [r['efficiency_prediction'] for r in results[name]]
         
-        # Safety Metrics
         metrics = compute_metrics(predictions, ground_truth)
         kappa = compute_human_agreement(predictions, human_labels)
         metrics['human_agreement_kappa'] = kappa
         
-        # Efficiency Metrics (Accuracy only for now)
         eff_correct = sum(1 for p, g in zip(eff_preds, efficiency_ground_truth) if p == g)
         metrics['efficiency_accuracy'] = eff_correct / len(eff_preds) if eff_preds else 0
         
         metrics_table[name] = metrics
     
-    print("\n[5/5] RESULTS")
     print("\n" + "="*80)
-    print("Performance Comparison on {} Missions".format(len(missions_to_evaluate)))
+    print("DETAILED METRICS")
     print("="*80)
     print(f"{'Method':<20} {'Safety Acc':<12} {'Precision':<10} {'Recall':<10} {'F1':<10} {'Eff Acc':<10}")
     print("-"*80)
@@ -2134,36 +2216,8 @@ def main():
         print(f"{name:<20} {metrics['accuracy']:<12.2%} {metrics['precision']:<10.2%} "
               f"{metrics['recall']:<10.2%} {metrics['f1_score']:<10.2%} {metrics['efficiency_accuracy']:<10.2%}")
     
-    # 每个类别的详细指标
-    print("\n" + "="*80)
-    print("Per-Class Metrics (Macro Average)")
-    print("="*80)
-    print(f"{'Class':<15} {'Precision':<12} {'Recall':<12} {'F1':<12} {'Support':<10}")
-    print("-"*80)
-    
-    for label in ["Safe", "Borderline", "Risky"]:
-        # 计算平均指标
-        avg_precision = np.mean([m['per_class'][label]['precision'] for m in metrics_table.values()])
-        avg_recall = np.mean([m['per_class'][label]['recall'] for m in metrics_table.values()])
-        avg_f1 = np.mean([m['per_class'][label]['f1'] for m in metrics_table.values()])
-        avg_support = np.mean([m['per_class'][label]['support'] for m in metrics_table.values()])
-        
-        print(f"{label:<15} {avg_precision:<12.2%} {avg_recall:<12.2%} {avg_f1:<12.2%} {avg_support:<10.0f}")
-    
-    print("\n" + "="*70)
-    print("Human Expert Agreement (Cohen's κ)")
     print("="*70)
     
-    for name, metrics in metrics_table.items():
-        kappa = metrics['human_agreement_kappa']
-        if np.isnan(kappa):
-            print(f"{name:<25} κ = nan (No agreement)")
-        else:
-            print(f"{name:<25} κ = {kappa:.3f} (Substantial agreement)")
-    
-    print("="*70)
-    
-    # 保存JSON结果
     output_file = "exp1_real_results.json"
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump({
