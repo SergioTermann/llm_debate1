@@ -1148,22 +1148,17 @@ You MUST structure your response as:
         mission_type = mission_data.get('mission_type', '')
         hard_violations = self._check_hard_constraints(drone_analyses, formation_analysis, mission_type)
         if hard_violations:
-            print(f"\n    [VETO] Hard constraint violated: {hard_violations[0]}")
-            # Use single agent efficiency logic for VETO cases
-            eff = TrajectoryAnalyzer.analyze_efficiency(drones[0]['trajectory'])
-            eff_score = eff['efficiency_score']
-            eff_label = "High" if eff_score >= 70 else "Medium" if eff_score >= 50 else "Low"
+            print(f"\n    [WARNING] Hard constraints flagged: {hard_violations[0]} (Passing to debate)")
+            # Add hard violations as critical evidence for the debate, but DO NOT VETO immediately
+            # This allows the debate to contextually analyze if the violation is a sensor error or real risk
+            trajectory_summary += "\n\n[SYSTEM DETECTED CRITICAL WARNINGS]:\n" + "\n".join([f"- {v}" for v in hard_violations])
             
-            return {
-                "method": "Multi-Agent-Debate",
-                "safety_label": "Risky",
-                "efficiency_label": eff_label,
-                "score": 15,
-                "issues_identified": hard_violations,
-                "debate_transcript": ["VETO: Deterministic Safety Verification"],
-                "route_layer": route_layer,
-                "complexity": H_comp
-            }
+            # ORIGINALLY VETOED HERE - NOW REMOVED TO ALLOW DEBATE
+            # return {
+            #     "method": "Multi-Agent-Debate",
+            #     "safety_label": "Risky",
+            #     ...
+            # }
         
         # === STEP 2: Multi-round Expert Panel with Role & Team Rotation ===
         all_rounds = []
@@ -1262,45 +1257,32 @@ You MUST structure your response as:
             override_to_risky = False
             
             # Issue 1: Critical unobservable issues (GPS drift, signal loss)
-            # Use the detector from RealFixedWeightEvaluator
             from exp1_real_evaluation import RealFixedWeightEvaluator
             unobservable_detector = RealFixedWeightEvaluator(self.api_key)
             unobservable = unobservable_detector.detect_unobservable_issues_all(drones) if hasattr(unobservable_detector, 'detect_unobservable_issues_all') else unobservable_detector.detect_unobservable_issues(drones)
-            if unobservable.get('has_critical_issues', False):
+            
+            # Only override if issues are CRITICAL (High/Medium are handled by debate)
+            if unobservable.get('severity') == 'critical':
                 override_to_risky = True
             
-            # Issue 2: Poor coordination quality (low threshold indicates problems)
-            if formation_analysis.get('coordination_quality', 100) < 35:
+            # Issue 2: Poor coordination quality - RELAXED THRESHOLD
+            if formation_analysis.get('coordination_quality', 100) < 25:  # Lowered from 35
                 override_to_risky = True
             
-            # Issue 3: Unstable formation (low threshold indicates problems)
-            if formation_analysis.get('formation_stability', 100) < 65:
+            # Issue 3: Unstable formation - RELAXED THRESHOLD
+            if formation_analysis.get('formation_stability', 100) < 50:  # Lowered from 65
                 override_to_risky = True
             
-            # Issue 4: Mission name indicates safety issues
-            mission_name = mission_data.get('mission_id', '').lower()
-            risky_indicators = ['collision', 'glitch', 'loss', 'emergency', 'evasion', 'attack', 'defense', 'break']
-            if any(indicator in mission_name for indicator in risky_indicators):
-                override_to_risky = True
+            # Issue 4: Majority of experts voted Risky with high confidence
+            safe_votes = sum(1 for r in final_round if 'safe' in r.get('claim', '').lower() and r.get('confidence', 50) >= 60)
+            risky_votes = sum(1 for r in final_round if ('risk' in r.get('claim', '').lower() or 'concern' in r.get('claim', '').lower()) and r.get('confidence', 50) >= 60)
             
-            # Issue 5: Any expert claimed Risky or raised safety concerns
-            for resp in final_round:
-                claim = resp.get('claim', '').lower()
-                if 'risk' in claim or 'concern' in claim or 'problem' in claim:
-                    # Check confidence - if experts are confident about concerns, override
-                    if resp.get('confidence', 50) >= 50:
-                        override_to_risky = True
-                        break
-            
-            # Issue 6: Multiple experts have concerns
-            safe_votes = sum(1 for r in final_round if 'safe' in r.get('claim', '').lower() and r.get('confidence', 50) >= 50)
-            risky_votes = sum(1 for r in final_round if 'risk' in r.get('claim', '').lower() or 'concern' in r.get('claim', '').lower() and r.get('confidence', 50) >= 50)
-            
-            if risky_votes >= safe_votes and risky_votes > 0:
+            # Only override if Risky votes strictly outnumber Safe votes
+            if risky_votes > safe_votes and risky_votes >= 2:
                 override_to_risky = True
             
             if override_to_risky:
-                print(f"    [POST-PROCESS] Overriding Borderline -> Risky (clear safety issues detected)")
+                print(f"    [POST-PROCESS] Overriding Borderline -> Risky (Critical safety issues verified)")
                 safety_label = "Risky"
                 score = max(10, score - 20)
         
@@ -1868,44 +1850,32 @@ CONSENSUS METRICS:
 YOUR TASK:
 As the Lead Evaluator, synthesize the expert panel's assessments into a final verdict.
 
-STRICT DECISION RULES (MINIMIZE BORDERLINE - USE ONLY WHEN TRULY UNCERTAIN):
+DECISION LOGIC (BALANCED & EVIDENCE-BASED):
 
-1. CRITICAL FLAGS -> IMMEDIATE RISKY:
-   - Any expert mentions "formation distance" < 0.5m OR "collision risk"
-   - Any expert mentions "GPS drift", "GPS glitch", or "signal loss"
-   - Any expert mentions "emergency", "evasion", or "collision"
-   - Coordination quality score < 30 (very poor coordination)
-   - Formation stability score < 60 (unstable formation)
+1. PRESUMPTION OF SAFETY:
+   - If metrics are generally good (>60) and experts are nitpicking minor details -> SAFE.
+   - Do NOT penalize for minor data noise (e.g., single point glitches) if the overall mission was stable.
+   - Treat "Formation distance < 0.5m" or "GPS drift" as RISKY only if CORROBORATED by multiple experts or data evidence.
 
-2. MODERATE CONCERNS -> RISKY (NOT BORDERLINE):
-   - Coordination quality score 30-50
-   - Formation stability score 60-70
-   - Multiple experts express concern even without fatal flaws
-   - Any speed/altitude instability mentioned by experts
+2. REQUIRE CORROBORATION FOR RISK:
+   - A single expert saying "Risky" is NOT enough (could be hallucination/over-sensitivity).
+   - Look for CONSENSUS among experts or HARD EVIDENCE (metrics < 40).
+   - "Unobservable issues" (GPS/Signal) are RISKY only if they persist (>5% of mission) or cause instability.
 
-3. ONLY USE BORDERLINE IF:
-   - ALL metrics are borderline (coordination 50-60, formation 70-80)
-   - Experts are genuinely divided (2 vs 2)
-   - No serious safety issues identified
-   - Data quality concerns but experts still lean Safe or Risky
+3. HANDLING BORDERLINE:
+   - Use "Borderline" when experts are genuinely split (e.g., 2 Safe vs 2 Risky) and evidence is ambiguous.
+   - If safety score is high (>70) but efficiency is low -> SAFE (Safety != Efficiency).
+   - If data quality is poor but no collision occurred -> BORDERLINE (Uncertainty).
 
-4. DEFAULT RULES:
-   - If ANY risky vote exists and no safe votes -> RISKY
-   - If 3+ risky votes -> RISKY (majority)
-   - If 2-2 split with ANY safety concerns -> RISKY
-   - If experts all agree on Safe -> SAFE
-
-AVOID BORDERLINE: Only use it when you genuinely cannot decide between Safe and Risky based on the evidence.
-
-EFFICIENCY RULES:
-- Path Efficiency > 70 -> High
-- Path Efficiency < 50 -> Low
+4. VERDICT DETERMINATION:
+   - Majority Vote acts as a strong baseline.
+   - Override Majority ONLY if the minority provides undeniable critical evidence (e.g., collision confirmed by position data).
 
 OUTPUT FORMAT:
 SAFETY: [Safe/Borderline/Risky]
 EFFICIENCY: [High/Medium/Low]
 SCORE: [0-100]
-REASONING: [2-3 sentences]
+REASONING: [2-3 sentences explaining why evidence outweighs noise]
 """
         
         return self._call_llm(
@@ -2071,7 +2041,7 @@ def main():
     print("="*80)
     
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    dataset_path = os.path.join(script_dir, "complex_uav_missions.json")
+    dataset_path = os.path.join(script_dir, "hard_uav_missions.json")  # Use HARD dataset for uncertainty testing
     missions = load_missions(dataset_path)
     if not missions:
         print("ERROR: No missions loaded.")
