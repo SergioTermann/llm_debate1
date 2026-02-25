@@ -429,6 +429,171 @@ class TrajectoryAnalyzer:
         return attention_regions
 
     @staticmethod
+    def analyze_temporal_phases(trajectory: List[Dict],
+                                 drone_analyses: List[Dict] = None,
+                                 formation_analysis: Dict = None,
+                                 n_phases: int = 3) -> List[Dict]:
+        """
+        时序阶段分析 —— 将任务分为早/中/末三段，分别计算安全指标。
+        末段（降落/任务收尾）权重最高，是安全评估的关键窗口。
+        """
+        if len(trajectory) < n_phases:
+            return []
+
+        n = len(trajectory)
+        phase_size = n // n_phases
+        phases = []
+
+        risk_labels = ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+
+        for p in range(n_phases):
+            start = p * phase_size
+            end = n if p == n_phases - 1 else (p + 1) * phase_size
+            seg = trajectory[start:end]
+
+            altitudes = [pt['altitude'] for pt in seg]
+            speeds    = [pt['speed'] for pt in seg]
+            headings  = [pt['heading'] for pt in seg]
+
+            hdg_changes = []
+            for i in range(1, len(headings)):
+                diff = abs(headings[i] - headings[i-1])
+                if diff > 180: diff = 360 - diff
+                hdg_changes.append(diff)
+
+            avg_hdg_chg = float(np.mean(hdg_changes)) if hdg_changes else 0.0
+            alt_std     = float(np.std(altitudes))
+            spd_std     = float(np.std(speeds))
+            gps_issues  = sum(1 for pt in seg if pt.get('gps_status') != 'OK')
+            sig_issues  = sum(1 for pt in seg if pt.get('signal_status') != 'OK')
+
+            # 综合风险评分（0=低风险，越高越危险）
+            risk_score = (avg_hdg_chg / 5 + alt_std * 0.5 + spd_std * 0.5
+                          + gps_issues * 3 + sig_issues * 3)
+            risk_idx = min(3, int(risk_score / 10))
+            risk_label = risk_labels[risk_idx]
+
+            phases.append({
+                "phase": p + 1,
+                "label": ["Early", "Mid", "Late"][p] if n_phases == 3 else f"P{p+1}",
+                "t_range": f"t={start}-{end-1}",
+                "avg_hdg_change": round(avg_hdg_chg, 1),
+                "alt_std": round(alt_std, 2),
+                "spd_std": round(spd_std, 2),
+                "gps_issues": gps_issues,
+                "sig_issues": sig_issues,
+                "risk_score": round(risk_score, 1),
+                "risk_label": risk_label
+            })
+
+        return phases
+
+    @staticmethod
+    def check_cross_drone_consistency(drones: List[Dict]) -> Dict:
+        """
+        跨机一致性检查 —— 检测多架无人机是否同步出现传感器异常。
+        独立传感器的失效不会完全同步；若同步，说明系统级故障（GPS欺骗/电磁干扰）。
+        返回：同步漂移时段、受影响无人机数量、判断结论。
+        """
+        if len(drones) < 2:
+            return {"sync_detected": False, "max_sync_count": 0, "sync_windows": []}
+
+        # 构建 time→drone_idx 的状态矩阵
+        time_status: Dict[int, List[str]] = {}
+        for d_idx, drone in enumerate(drones):
+            for pt in drone['trajectory']:
+                t = int(pt.get('time', pt.get('timestamp', 0)))
+                status = "BAD" if (pt.get('gps_status') != 'OK' or
+                                   pt.get('signal_status') != 'OK') else "OK"
+                if t not in time_status:
+                    time_status[t] = []
+                time_status[t].append(status)
+
+        # 找出同步故障时间点（≥2架同时异常）
+        sync_times = []
+        for t, statuses in sorted(time_status.items()):
+            bad_count = sum(1 for s in statuses if s == "BAD")
+            if bad_count >= 2:
+                sync_times.append((t, bad_count))
+
+        # 合并连续时间段
+        sync_windows = []
+        if sync_times:
+            w_start, w_count = sync_times[0]
+            prev_t = w_start
+            for t, cnt in sync_times[1:]:
+                if t == prev_t + 1:
+                    w_count = max(w_count, cnt)
+                else:
+                    sync_windows.append({"t_start": w_start, "t_end": prev_t,
+                                         "max_drones_affected": w_count})
+                    w_start, w_count = t, cnt
+                prev_t = t
+            sync_windows.append({"t_start": w_start, "t_end": prev_t,
+                                  "max_drones_affected": w_count})
+
+        max_sync = max((w['max_drones_affected'] for w in sync_windows), default=0)
+        ratio = len(sync_times) / max(1, max(len(d['trajectory']) for d in drones))
+
+        return {
+            "sync_detected": max_sync >= 2,
+            "sync_windows": sync_windows,
+            "max_sync_count": max_sync,
+            "sync_time_ratio": round(ratio, 3),
+            "verdict": (
+                "SYSTEM-LEVEL FAILURE (synchronized)" if max_sync >= 3 else
+                "POSSIBLE INTERFERENCE (2 drones sync)" if max_sync == 2 else
+                "Independent errors (normal)"
+            )
+        }
+
+    @staticmethod
+    def check_physics_coherence(trajectory: List[Dict]) -> List[Dict]:
+        """
+        物理相干性验证 —— 检查 GPS位移方向 是否与 heading 传感器一致。
+        若 GPS 显示向北移动但 heading 朝南，则为传感器矛盾（欺骗/故障）。
+        返回：矛盾时间点列表，每个包含时间戳、GPS方向、heading方向、角度差。
+        """
+        if len(trajectory) < 2:
+            return []
+
+        contradictions = []
+        for i in range(1, len(trajectory)):
+            prev = trajectory[i - 1]
+            curr = trajectory[i]
+
+            # GPS 位移方向
+            dlat = curr['latitude']  - prev['latitude']
+            dlon = curr['longitude'] - prev['longitude']
+            displacement = math.sqrt(dlat**2 + dlon**2) * 111000  # 米
+
+            if displacement < 0.5:   # 位移太小，忽略（悬停/精度问题）
+                continue
+
+            # 从GPS位移计算实际方向 (bearing)
+            gps_bearing = math.degrees(math.atan2(dlon, dlat)) % 360
+
+            # 传感器报告的heading
+            sensor_hdg = curr['heading'] % 360
+
+            # 计算角度差（取最短路径）
+            angle_diff = abs(gps_bearing - sensor_hdg)
+            if angle_diff > 180:
+                angle_diff = 360 - angle_diff
+
+            # 差异超过 90° 视为矛盾（正常噪声应 < 30°）
+            if angle_diff > 90:
+                contradictions.append({
+                    "time": curr.get('time', i),
+                    "gps_bearing": round(gps_bearing, 1),
+                    "sensor_heading": round(sensor_hdg, 1),
+                    "angle_diff": round(angle_diff, 1),
+                    "displacement_m": round(displacement, 2)
+                })
+
+        return contradictions
+
+    @staticmethod
     def generate_trajectory_dsl(trajectory: List[Dict], formation_analysis: Dict = None) -> str:
         """生成轨迹DSL - 标准化的领域特定语言表示"""
         if len(trajectory) < 2:
@@ -980,6 +1145,7 @@ class RealMultiAgentDebateEvaluator:
     def __init__(self, api_key: str, model: str = "Qwen/Qwen3-32B", max_rounds: int = 2, verbose: bool = False,
                  enable_role_rotation: bool = True, enable_evidence_verification: bool = True,
                  ablation_settings: Dict = None):
+        self.api_key = api_key
         self.client = OpenAI(api_key=api_key, base_url="https://api.siliconflow.cn/v1")
         self.model = model
         self.verbose = verbose
@@ -994,7 +1160,7 @@ class RealMultiAgentDebateEvaluator:
         # Track current rotated roles
         self.current_role_mapping = {0: 0, 1: 1, 2: 2, 3: 3}
         
-        # Three Specialized Expert Agents (as per paper Section II.B)
+        # Four Specialized Expert Agents (as per paper Section II.B)
         self.experts = [
             {
                 "id": 0,
@@ -1005,109 +1171,134 @@ class RealMultiAgentDebateEvaluator:
                 "system_prompt": """You are a Flight Control Specialist with a PRECISION BIAS.
 
 CORE EXPERTISE:
-- Trajectory smoothness (RMSE, variance, heading changes)
-- Altitude stability and vertical control
-- Speed consistency and acceleration profiles
-- Physical feasibility of maneuvers
-- MISSION EFFICIENCY (Path Efficiency, Tortuosity, Energy use)
+- Trajectory smoothness (heading change variance per phase)
+- Altitude/speed CONSISTENCY across all mission phases (Early/Mid/Late)
+- Physical feasibility: does the reported heading/speed MATCH the GPS displacement?
+- MISSION EFFICIENCY: Path Efficiency score and Tortuosity ratio
 
-COGNITIVE BIAS: You prioritize quantitative metrics and efficiency. You penalize deviations >5% from nominal trajectories and inefficient paths.
+CRITICAL RULE — PHYSICS COHERENCE CHECK:
+You MUST check the "PHYSICS COHERENCE" section first. If GPS bearing contradicts heading by >90°
+across multiple timesteps, this is a SENSOR MALFUNCTION (not a normal flight anomaly).
+A drone claiming to fly South while GPS shows it moving North IS NOT SAFE.
+
+CONTEXTUAL REASONING:
+- Large heading changes (±70°) WITH perfectly constant speed/altitude = CONTROLLED maneuver (planned search)
+- Large heading changes WITH erratic speed/altitude = loss of control
+- Distinguish intentional maneuver from failure mode by checking speed/altitude stability
 
 EVIDENCE CHAIN REQUIREMENT:
-You MUST structure your response as:
-[CLAIM]: One-sentence core judgment on Safety AND Efficiency
-[EVIDENCE]: 3-5 bullet points citing specific metrics (e.g., "Smoothness: 85, Efficiency: 92 (High)")
-[COUNTER]: Anticipate one potential counterargument
+[CLAIM]: One-sentence judgment on flight control quality AND physical coherence
+[EVIDENCE]: 3-5 bullets with specific phase data (e.g., "Late-phase AltStd=0.1m — stable")
+[COUNTER]: Argue the opposing interpretation of the most ambiguous data point
 [SUMMARY]: Three key takeaways
-[CONFIDENCE]: Score 0-100"""
+[CONFIDENCE]: 0-100"""
             },
             {
                 "id": 1,
                 "name": "Swarm Coordination Expert (SCE)",
                 "role": "SCE",
                 "bias": "Cohesion Bias",
-                "core_values": "Formation stability, collective behavior, inter-drone coordination",
+                "core_values": "Formation stability, collective behavior, multi-scale coordination",
                 "system_prompt": """You are a Swarm Coordination Expert with a COHESION BIAS.
 
 CORE EXPERTISE:
-- Formation stability and geometry preservation
-- Inter-drone communication quality
-- Collective behavior patterns
-- Coordination efficiency
+- Formation geometry at EACH temporal phase (Early/Mid/Late)
+- Sub-formation detection: are drones splitting into 2+ separate groups?
+- Min/Max formation distance across all timesteps (not just average)
+- Coordination quality trends: improving or degrading over time?
 
-COGNITIVE BIAS: You evaluate the swarm as a COLLECTIVE entity, penalizing individual outliers even if individually safe. Group statistics matter more than individual metrics.
+CRITICAL RULE — MULTI-SCALE ANALYSIS:
+Global formation metrics can be misleading. You MUST check for sub-formation patterns:
+- If 2 drones maintain 5m separation AND 2 others maintain 5m separation, but the two groups
+  are 300m apart: this is a SPLIT FORMATION (Borderline, not Safe or Risky)
+- A formation collapse in the LATE phase is more serious than one in the Early phase
+
+TEMPORAL FORMATION TREND:
+Always assess whether formation is STABLE / IMPROVING / DEGRADING over time.
+A formation that degrades from 50m to 0.5m distance in the late phase is catastrophic
+even if the early phase was perfect.
 
 EVIDENCE CHAIN REQUIREMENT:
-You MUST structure your response as:
-[CLAIM]: One-sentence core judgment
-[EVIDENCE]: 3-5 bullet points citing formation metrics (e.g., "Min Formation Dist: 3.2m, safe")
-[COUNTER]: Anticipate one potential counterargument
+[CLAIM]: One-sentence judgment on formation health across all phases
+[EVIDENCE]: 3-5 bullets citing phase-specific formation data and trend
+[COUNTER]: Argue the opposing view (e.g., "the split was intentional coverage")
 [SUMMARY]: Three key takeaways
-[CONFIDENCE]: Score 0-100"""
+[CONFIDENCE]: 0-100"""
             },
             {
                 "id": 2,
                 "name": "Safety Assessment Expert (SAE)",
                 "role": "SAE",
-                "bias": "Pessimistic Bias (Zero-Trust)",
-                "core_values": "Risk detection, edge case identification, worst-case analysis",
-                "system_prompt": """You are a Safety Assessment Expert with a PESSIMISTIC BIAS (Zero-Trust Model).
+                "bias": "Pessimistic Bias (Zero-Trust + Temporal Weighting)",
+                "core_values": "Worst-case analysis, late-phase risk, collision proximity, recovery evaluation",
+                "system_prompt": """You are a Safety Assessment Expert with PESSIMISTIC BIAS and TEMPORAL WEIGHTING.
 
 CORE EXPERTISE:
-- Collision risk analysis
-- Safety envelope boundary violations
-- Critical anomaly detection
-- Worst-case scenario evaluation
+- LATE-PHASE FOCUS: Safety incidents in the last 20% of mission (landing/final approach) are 3x more critical
+- Minimum formation distance across ALL timesteps (the single closest approach matters most)
+- Recovery quality: when near-miss occurred, did the system actively respond?
+- Risk trajectory: is the situation IMPROVING or DETERIORATING in the final phase?
 
-COGNITIVE BIAS: You operate under ZERO-TRUST. Flag any state vector approaching within 10% of safety boundaries as CRITICAL RISK. Prioritize FALSE POSITIVES over FALSE NEGATIVES.
+CRITICAL SAFETY THRESHOLDS:
+- Formation dist < 0.5m at ANY point → COLLISION RISK (regardless of average)
+- GPS errors in late phase → CRITICAL (landing guidance failure)
+- Physics incoherence (GPS vs heading conflict) → RISKY (navigation failure)
+- Synchronized sensor failure across drones → SYSTEM RISK (not individual noise)
 
-SAFETY THRESHOLDS (RELAXED FOR COMPLEX MANEUVERS):
-- Heading Change > 150° in 1s -> CRITICAL (Uncontrolled spin)
-- Altitude Deviation > 30m -> CRITICAL (Loss of control)
-- Formation Distance < 0.2m -> CRITICAL (Collision imminent)
+TEMPORAL WEIGHTING RULE:
+When the LATE phase risk label is HIGH or CRITICAL, this OVERRIDES an otherwise good average score.
+"The mission was 90% safe but crashed on landing" = RISKY overall.
+
+NEAR-MISS EVALUATION:
+A near miss (0.5-2m) requires checking: Did speed/heading change sharply immediately after?
+If YES → active avoidance system worked → Borderline
+If NO  → no avoidance detected → Risky (could have collided)
 
 EVIDENCE CHAIN REQUIREMENT:
-You MUST structure your response as:
-[CLAIM]: One-sentence core judgment
-[EVIDENCE]: 3-5 bullet points citing extreme values (e.g., "Max Heading Change: 35°, acceptable")
-[COUNTER]: Anticipate one potential counterargument
-[SUMMARY]: Three key takeaways
-[CONFIDENCE]: Score 0-100"""
+[CLAIM]: One-sentence judgment focused on WORST-CASE and LATE-PHASE evidence
+[EVIDENCE]: 3-5 bullets with exact timesteps (e.g., "t=82: UAV2/3 dist=0.3m — collision risk")
+[COUNTER]: The Blue Team argument for why this risk is acceptable
+[SUMMARY]: Three key takeaways emphasizing temporal risk
+[CONFIDENCE]: 0-100"""
             },
             {
                 "id": 3,
-                "name": "Uncertainty Analysis Expert (UAE)",
-                "role": "UAE",
-                "bias": "Skeptical Bias (Question Data Quality)",
-                "core_values": "Data integrity, measurement uncertainty, sensor reliability, edge case identification",
-                "system_prompt": """You are an Uncertainty Analysis Expert with a SKEPTICAL BIAS toward data quality.
+                "name": "Uncertainty & Integrity Analyst (UIA)",
+                "role": "UIA",
+                "bias": "Skeptical Bias (Data Integrity + Sensor Cross-Validation)",
+                "core_values": "Cross-sensor consistency, system-level failure detection, physics validation",
+                "system_prompt": """You are an Uncertainty & Integrity Analyst specializing in SENSOR CROSS-VALIDATION.
 
 CORE EXPERTISE:
-- Sensor noise and drift patterns
-- GPS signal quality and dropout detection
-- Data completeness and missing segments
-- Measurement uncertainty propagation
-- Ambiguous/borderline cases identification
+- CROSS-DRONE CONSISTENCY: Independent sensor failures don't synchronize. If multiple drones
+  show GPS drift at EXACTLY the same timesteps → SYSTEM-LEVEL GPS failure (not random noise)
+- PHYSICS COHERENCE: GPS displacement direction must match heading sensor within ~30°.
+  If they contradict by >90°, the drone's navigation state is CORRUPTED.
+- Data completeness and discontinuity patterns
 
-COGNITIVE BIAS: You question the RELIABILITY of the data. Look for:
-- Sudden jumps indicating sensor glitches
-- Data gaps or suspicious discontinuities (check if they are critical)
-- High variance indicating poor sensor quality
+CRITICAL DETECTION RULES:
+1. SYNCHRONIZED SENSOR FAILURE:
+   - 1 drone with GPS drift at t=40-55 = individual error (OK)
+   - 4 drones ALL with GPS drift at t=40-55 in SAME direction = GPS spoofing/jamming (RISKY)
+   
+2. PHYSICS INCOHERENCE:
+   - Check "PHYSICS COHERENCE" section carefully
+   - If ≥5 contradictions detected: sensor malfunction is CONFIRMED → RISKY
+   - If 1-4 contradictions: possible glitch → BORDERLINE
 
-KEY INDICATORS OF UNCERTAINTY:
-- Speed/altitude/heading variance > 20% of mean -> Low data quality
-- Sudden position jumps > 50m -> GPS glitch
-- Missing time segments -> Data loss (Assess if mission recovered)
+3. DATA QUALITY vs. MISSION OUTCOME:
+   - Poor sensor quality DOES NOT automatically mean mission failed
+   - If sensors are bad but no collision occurred AND mission recovered → BORDERLINE
+   - If sensors are bad AND indicate collision/loss of control → RISKY
 
-YOUR ROLE: Identify if data quality issues prevent a reliable assessment. If data is messy but mission succeeded, state "Reliable enough".
+YOUR KEY QUESTION: "Can we TRUST the data? If not, what does the worst-case interpretation say?"
 
 EVIDENCE CHAIN REQUIREMENT:
-You MUST structure your response as:
-[CLAIM]: One-sentence core judgment on data quality
-[EVIDENCE]: 3-5 bullet points citing data quality indicators
-[COUNTER]: Anticipate one potential counterargument (e.g. "Data gap was short")
-[SUMMARY]: Three key takeaways about uncertainty
-[CONFIDENCE]: Score 0-100 (reflecting confidence in the DATA SUFFICIENCY)"""
+[CLAIM]: One-sentence judgment on data integrity and what it implies for safety
+[EVIDENCE]: 3-5 bullets on specific sensor anomalies with timestamps
+[COUNTER]: The case for trusting the data (or vice versa)
+[SUMMARY]: Three key takeaways about data reliability
+[CONFIDENCE]: 0-100 (confidence in data SUFFICIENCY for assessment)"""
             }
         ]
     
@@ -1537,10 +1728,14 @@ Focus on different aspects: Flight Control, Swarm Coordination, Safety, or Uncer
         elif min_metric == 'diversity':
             intervention = f"""
 [INTERVENTION - Round {round_idx + 1}]:
-The debate is showing echo chamber effects - experts are converging too quickly.
+The debate is showing "Groupthink". Experts are agreeing too easily.
 
-INSTRUCTION: Red Team agents must actively challenge the consensus.
-Blue Team agents must acknowledge valid criticisms but defend their position.
+INSTRUCTION FOR RED TEAM:
+- You MUST construct a plausible FAILURE SCENARIO based on the weakest data point (e.g., "What if the GPS drift at t=45 coincides with a wind gust?").
+- Do not accept "Good Enough".
+
+INSTRUCTION FOR BLUE TEAM:
+- Defend against the specific failure scenario constructed by Red Team.
 """
         elif min_metric == 'relevance':
             intervention = f"""
@@ -1679,23 +1874,20 @@ INSTRUCTION: All claims must be backed by VERIFIABLE trajectory data.
         if team == "RED":
             team_instruction = """
 [RED TEAM INSTRUCTIONS - Adversarial Role]:
-- Actively search for anomalies and potential risks
-- Challenge any claims of safety with concrete counter-examples
-- Identify boundary cases where system approaches (but may not violate) limits
-- Question assumptions made by other experts
-- Flag patterns indicating rare but critical failure modes
-
-Your goal: Find what could go wrong.
+- CRITICAL MISSION: You are the "Devil's Advocate". Your job is to find the hidden flaw that could cause a crash.
+- Do NOT just look at averages. Look at specific SEGMENTS or EVENTS where limits were approached.
+- Challenge "Safe" verdicts by asking: "What if this sensor reading is slightly off?" or "What if wind gusts occur here?"
+- If the formation is tight (< 2m), argue it's a collision risk.
+- If the formation is loose (> 10m), argue it's a coordination failure.
+- Your Goal: PROVE that the mission is RISKY.
 """
         else:
             team_instruction = """
 [BLUE TEAM INSTRUCTIONS - Collaborative Role]:
-- Provide objective professional assessment based on domain expertise
-- Acknowledge valid criticisms from Red team with data-backed evidence
-- Refute unreasonable challenges by citing specific trajectory segments
-- Maintain constructive stance focused on system understanding
-
-Your goal: Balanced, evidence-based analysis.
+- MISSION: Defend the system's performance. Explain why the mission was successful despite minor imperfections.
+- Contextualize errors: "This sharp turn was necessary for the mission waypoints," or "The formation change was a controlled maneuver."
+- Refute Red Team's hypothetical risks with the hard data showing no actual collision occurred.
+- Your Goal: PROVE that the mission is SAFE and EFFECTIVE.
 """
         
         return f"""
@@ -1708,6 +1900,10 @@ As a {expert['name']} ({expert['bias']}), analyze this mission from your domain 
 
 REMEMBER YOUR COGNITIVE BIAS:
 - {expert['bias']}: {expert['core_values']}
+
+INSTRUCTION ON NOVELTY:
+- Do NOT simply repeat what other experts have said.
+- Find a NEW piece of evidence (a different time segment, a different metric) to support your claim.
 
 Provide your assessment following the Evidence Chain format:
 [CLAIM]: ...
@@ -1848,34 +2044,27 @@ CONSENSUS METRICS:
 - Risky Votes: {consensus['risky_votes']}/{len(final_round)}
 
 YOUR TASK:
-As the Lead Evaluator, synthesize the expert panel's assessments into a final verdict.
+Synthesize the final verdict based on the *process* of debate, not just the final vote.
 
-DECISION LOGIC (BALANCED & EVIDENCE-BASED):
+HIGHLIGHTS REQUIRED:
+- Identify the "Turning Point" in the debate (if any): Did an expert change their mind? Why?
+- Identify "Hidden Risks": Risks that were not obvious in the summary but were uncovered by an expert.
+- Resolve conflicts: If experts disagree, explain whose evidence is stronger (e.g., Red Team found specific collision risk vs Blue Team general metrics).
 
-1. PRESUMPTION OF SAFETY:
-   - If metrics are generally good (>60) and experts are nitpicking minor details -> SAFE.
-   - Do NOT penalize for minor data noise (e.g., single point glitches) if the overall mission was stable.
-   - Treat "Formation distance < 0.5m" or "GPS drift" as RISKY only if CORROBORATED by multiple experts or data evidence.
-
-2. REQUIRE CORROBORATION FOR RISK:
-   - A single expert saying "Risky" is NOT enough (could be hallucination/over-sensitivity).
-   - Look for CONSENSUS among experts or HARD EVIDENCE (metrics < 40).
-   - "Unobservable issues" (GPS/Signal) are RISKY only if they persist (>5% of mission) or cause instability.
-
-3. HANDLING BORDERLINE:
-   - Use "Borderline" when experts are genuinely split (e.g., 2 Safe vs 2 Risky) and evidence is ambiguous.
-   - If safety score is high (>70) but efficiency is low -> SAFE (Safety != Efficiency).
-   - If data quality is poor but no collision occurred -> BORDERLINE (Uncertainty).
-
-4. VERDICT DETERMINATION:
-   - Majority Vote acts as a strong baseline.
-   - Override Majority ONLY if the minority provides undeniable critical evidence (e.g., collision confirmed by position data).
+DECISION LOGIC:
+1. PRESUMPTION OF SAFETY unless proven otherwise by SPECIFIC evidence (e.g., time t=X, dist < 0.5m).
+2. If Red Team found a valid collision risk (dist < 0.5m) or loss of control (heading change > 150 deg), Verdict is RISKY.
+3. If Red Team's concerns were successfully refuted by Blue Team (e.g., it was a controlled maneuver), Verdict is SAFE.
+4. If the situation is ambiguous or data is missing, Verdict is BORDERLINE.
 
 OUTPUT FORMAT:
 SAFETY: [Safe/Borderline/Risky]
 EFFICIENCY: [High/Medium/Low]
 SCORE: [0-100]
-REASONING: [2-3 sentences explaining why evidence outweighs noise]
+REASONING: [
+  - **Debate Key Insight**: [One sentence on what the debate revealed]
+  - **Verdict Justification**: [Explain why the final decision was reached]
+]
 """
         
         return self._call_llm(
@@ -1884,39 +2073,149 @@ REASONING: [2-3 sentences explaining why evidence outweighs noise]
         )
     
     def _build_trajectory_summary(self, mission_data: Dict, drone_analyses: List[Dict], formation_analysis: Dict) -> str:
-        """构建轨迹摘要 - 包含极值证据和DSL tokenization"""
-        smoothness = np.mean([a['trajectory_smoothness'] for a in drone_analyses])
-        altitude = np.mean([a['altitude_stability'] for a in drone_analyses])
-        speed = np.mean([a['speed_consistency'] for a in drone_analyses])
-        formation = formation_analysis['formation_stability']
+        """
+        构建增强型轨迹摘要，包含：
+        1. 基础性能评分
+        2. 极值证据（最坏情况）
+        3. 时序阶段安全分析（末段加权）
+        4. 跨机一致性检查（系统级故障检测）
+        5. 物理相干性验证（传感器欺骗检测）
+        6. DSL 令牌化轨迹
+        """
+        drones = mission_data['drones']
+        primary_traj = drones[0]['trajectory']
+
+        smoothness   = np.mean([a['trajectory_smoothness'] for a in drone_analyses])
+        altitude     = np.mean([a['altitude_stability'] for a in drone_analyses])
+        speed        = np.mean([a['speed_consistency'] for a in drone_analyses])
+        formation    = formation_analysis['formation_stability']
         coordination = formation_analysis['coordination_quality']
-        overall_avg = (smoothness + altitude + speed + formation + coordination) / 5
-        
-        # 提取极值证据 (Worst Case Evidence)
+        overall_avg  = (smoothness + altitude + speed + formation + coordination) / 5
+
         max_heading_chg = max([a.get('max_heading_change', 0) for a in drone_analyses])
-        max_alt_std = max([a.get('altitude_std', 0) for a in drone_analyses])
-        min_form_dist = formation_analysis.get('min_formation_dist', 0)
-        
-        # 生成轨迹DSL (基于论文的tokenization方法)
-        trajectory_dsl = TrajectoryAnalyzer.generate_trajectory_dsl(mission_data['drones'][0]['trajectory'], formation_analysis)
-        
-        # 计算效率指标
-        eff = TrajectoryAnalyzer.analyze_efficiency(mission_data['drones'][0]['trajectory'])
-        
+        max_alt_std     = max([a.get('altitude_std', 0) for a in drone_analyses])
+        min_form_dist   = formation_analysis.get('min_formation_dist', 0)
+
+        eff = TrajectoryAnalyzer.analyze_efficiency(primary_traj)
+
+        # ── 时序阶段分析 ──
+        phases = TrajectoryAnalyzer.analyze_temporal_phases(primary_traj)
+        phase_lines = []
+        for ph in phases:
+            trend_arrow = "↑" if ph['phase'] > 1 and ph['risk_score'] < phases[ph['phase']-2]['risk_score'] else "↓" if ph['phase'] > 1 else " "
+            phase_lines.append(
+                f"  {ph['label']:5s} ({ph['t_range']:10s}): "
+                f"HdgVar={ph['avg_hdg_change']:5.1f}° | AltStd={ph['alt_std']:5.2f}m | "
+                f"GPS_err={ph['gps_issues']:2d} | Risk={ph['risk_label']}{trend_arrow}"
+            )
+        phase_section = "\n".join(phase_lines) if phase_lines else "  N/A"
+
+        # ── 末段预警（最后20%最重要）──
+        n_traj = len(primary_traj)
+        late_start = int(n_traj * 0.8)
+        late_traj  = primary_traj[late_start:]
+        late_gps_issues = sum(1 for pt in late_traj if pt.get('gps_status') != 'OK')
+        late_risk_note  = ""
+        if phases and phases[-1]['risk_label'] in ('HIGH', 'CRITICAL'):
+            late_risk_note = (f"  [!] LATE-PHASE RISK DETECTED: {phases[-1]['risk_label']} "
+                              f"(GPS errors={late_gps_issues} in last {len(late_traj)} steps)")
+
+        # ── 分阶段编队距离趋势（关键：识别末段收敛/扩散危机）──
+        early_end = int(n_traj * 0.33)
+        mid_end   = int(n_traj * 0.66)
+        def _phase_formation(start, end):
+            sliced = [{"drone_id": d["drone_id"],
+                       "trajectory": d["trajectory"][start:end]} for d in drones]
+            fa_p = TrajectoryAnalyzer.analyze_formation(sliced)
+            return fa_p['min_formation_dist'], fa_p.get('avg_formation_distance', 0)
+
+        try:
+            early_min, early_mean = _phase_formation(0, early_end)
+            mid_min,   mid_mean   = _phase_formation(early_end, mid_end)
+            late_min,  late_mean  = _phase_formation(mid_end, n_traj)
+            formation_trend = (
+                f"  Formation Min Distance  — Early:{early_min:.1f}m | Mid:{mid_min:.1f}m | Late:{late_min:.1f}m\n"
+                f"  Formation Mean Distance — Early:{early_mean:.1f}m | Mid:{mid_mean:.1f}m | Late:{late_mean:.1f}m"
+            )
+            # 自动检测末段收敛趋势
+            if late_min < early_min * 0.6 and late_min < 20:
+                formation_trend += (f"\n  [!] CONVERGENCE TREND: formation shrinking "
+                                    f"{early_min:.1f}m -> {late_min:.1f}m — collision risk increasing")
+            elif late_mean > early_mean * 1.5:
+                formation_trend += (f"\n  [!] DIVERGENCE TREND: formation expanding "
+                                    f"{early_mean:.1f}m -> {late_mean:.1f}m — coordination breakdown")
+        except Exception:
+            formation_trend = "  N/A"
+
+        # ── 跨机一致性检查 ──
+        cross_check = TrajectoryAnalyzer.check_cross_drone_consistency(drones)
+        cross_section = f"  {cross_check['verdict']}"
+        if cross_check['sync_windows']:
+            for w in cross_check['sync_windows'][:3]:
+                cross_section += (f"\n  SYNC WINDOW: t={w['t_start']}-{w['t_end']}, "
+                                  f"{w['max_drones_affected']}/{len(drones)} drones affected")
+        if cross_check['sync_detected']:
+            cross_section += "\n  *** SYNCHRONIZED FAILURE = SYSTEM-LEVEL EVENT, NOT RANDOM NOISE ***"
+
+        # ── 物理相干性验证（针对主无人机）──
+        contradictions = TrajectoryAnalyzer.check_physics_coherence(primary_traj)
+        phys_section = "  No contradictions detected (sensors consistent)"
+        if contradictions:
+            phys_section = f"  CONTRADICTIONS FOUND: {len(contradictions)} timesteps"
+            for c in contradictions[:3]:
+                phys_section += (f"\n  t={c['time']}: GPS_bearing={c['gps_bearing']:.0f}° vs "
+                                 f"heading={c['sensor_heading']:.0f}° (diff={c['angle_diff']:.0f}°) "
+                                 f"— {c['displacement_m']:.1f}m displaced")
+            if len(contradictions) > 5:
+                phys_section += f"\n  *** SEVERE: {len(contradictions)} total contradictions — sensor malfunction likely ***"
+
+        # ── 个体无人机极值 ──
+        drone_spotlight = []
+        for d_idx, (drone, analysis) in enumerate(zip(drones, drone_analyses)):
+            issues = []
+            if analysis.get('max_heading_change', 0) > 45:
+                issues.append(f"MaxHdg={analysis['max_heading_change']:.0f}°")
+            if analysis.get('altitude_std', 0) > 5:
+                issues.append(f"AltStd={analysis['altitude_std']:.1f}m")
+            gps_cnt = sum(1 for pt in drone['trajectory'] if pt.get('gps_status') != 'OK')
+            if gps_cnt > 0:
+                issues.append(f"GPS_err={gps_cnt}pts")
+            label = f"  {drone['drone_id']}: " + (", ".join(issues) if issues else "Clean")
+            drone_spotlight.append(label)
+
+        # ── DSL ──
+        trajectory_dsl = TrajectoryAnalyzer.generate_trajectory_dsl(primary_traj, formation_analysis)
+
         return f"""
-Mission Duration: {mission_data.get('flight_duration', 'N/A')}
+Mission: {mission_data.get('mission_id','N/A')} | Duration: {mission_data.get('flight_duration','N/A')} | Type: {mission_data.get('mission_type','N/A')}
+Description: {mission_data.get('description', 'N/A')}
 
-PERFORMANCE SCORECARD (0-100):
-- Overall Safety: {overall_avg:.1f}
-- Path Efficiency: {eff['efficiency_score']:.1f} (Tortuosity: {eff['tortuosity']:.2f})
-- Metrics: Smoothness {smoothness:.1f} | Altitude {altitude:.1f} | Speed {speed:.1f} | Formation {formation:.1f}
+═══ PERFORMANCE SCORECARD (0-100) ═══
+Overall Safety: {overall_avg:.1f}  |  Path Efficiency: {eff['efficiency_score']:.1f} (Tortuosity: {eff['tortuosity']:.2f})
+Smoothness: {smoothness:.1f} | Altitude: {altitude:.1f} | Speed: {speed:.1f} | Formation: {formation:.1f} | Coordination: {coordination:.1f}
 
-CRITICAL EVIDENCE (Extreme Values):
-- Max Heading Change: {max_heading_chg:.1f}° (Acceptable range: < 180°)
-- Max Altitude Std: {max_alt_std:.1f}m (Acceptable range: < 50m)
-- Min Formation Distance: {min_form_dist:.1f}m (Safe distance: > 2m)
+═══ CRITICAL EXTREMES (Worst-Case Evidence) ═══
+Max Heading Change : {max_heading_chg:.1f}°  (threshold: 150°=CRITICAL)
+Max Altitude Std   : {max_alt_std:.1f}m  (threshold: 50m=CRITICAL)
+Min Formation Dist : {min_form_dist:.2f}m  (threshold: <0.5m=collision risk)
 
-TRAJECTORY DSL (Tokenized Evidence):
+═══ TEMPORAL PHASE ANALYSIS (Early/Mid/Late) ═══
+{phase_section}
+{late_risk_note}
+
+═══ FORMATION DISTANCE TREND (Phase-by-Phase) ═══
+{formation_trend}
+
+═══ CROSS-DRONE CONSISTENCY CHECK ═══
+{cross_section}
+
+═══ PHYSICS COHERENCE (GPS vs. Heading/Speed) ═══
+{phys_section}
+
+═══ INDIVIDUAL DRONE SPOTLIGHT ═══
+{"chr(10)".join(drone_spotlight)}
+
+═══ TRAJECTORY DSL (Tokenized Evidence) ═══
 {trajectory_dsl}
 """
 

@@ -1,1041 +1,1614 @@
 {
   "dataset": "complex_uav_missions.json",
-  "num_missions": 30,
+  "num_missions": 48,
   "results": {
     "Single-Metric": [
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_GPS_DRIFT",
+        "mission_id": "MISSION_03_T1_DECEPTIVE_AVGS_3",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.63735715072681,
+        "efficiency_prediction": "High",
+        "score": 84.95988309880775,
         "issues": []
       },
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 57.47074145708497,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_GAPS",
+        "mission_id": "MISSION_04_T1_DECEPTIVE_AVGS_4",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.45809263659928,
+        "efficiency_prediction": "High",
+        "score": 84.95589236067191,
         "issues": []
       },
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_FORMATION",
+        "mission_id": "MISSION_02_T1_DECEPTIVE_AVGS_2",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.63735715072681,
+        "efficiency_prediction": "High",
+        "score": 84.9512612786768,
         "issues": []
       },
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_01_T1_DECEPTIVE_AVGS_1",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 84.23682197777626,
+        "efficiency_prediction": "High",
+        "score": 84.94984661572089,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_FORMATION",
+        "mission_id": "MISSION_05_T1_DECEPTIVE_AVGS_5",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.64906501519252,
+        "efficiency_prediction": "High",
+        "score": 84.95406948338588,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_GPS_DRIFT",
+        "mission_id": "MISSION_06_T1_DECEPTIVE_AVGS_6",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.64906501519252,
+        "efficiency_prediction": "High",
+        "score": 84.95101107671734,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_01_T2_SYNC_SENSOR_FAIL_1",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 84.23258396485237,
-        "issues": []
+        "efficiency_prediction": "High",
+        "score": 84.94427434194097,
+        "issues": [
+          "GPS drift detected (4 points)"
+        ]
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 57.442514551576124,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_GAPS",
+        "mission_id": "MISSION_02_T2_SYNC_SENSOR_FAIL_2",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.47596288215293,
-        "issues": []
+        "efficiency_prediction": "High",
+        "score": 84.94409039819266,
+        "issues": [
+          "GPS drift detected (4 points)"
+        ]
       },
       {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_03_T2_SYNC_SENSOR_FAIL_3",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 84.2385133755116,
-        "issues": []
+        "efficiency_prediction": "High",
+        "score": 84.94628699411737,
+        "issues": [
+          "GPS drift detected (4 points)"
+        ]
       },
       {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 57.44619389652003,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_GPS_DRIFT",
+        "mission_id": "MISSION_04_T2_SYNC_SENSOR_FAIL_4",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.65766650360723,
-        "issues": []
+        "efficiency_prediction": "High",
+        "score": 84.95764961342633,
+        "issues": [
+          "GPS drift detected (4 points)"
+        ]
       },
       {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_GAPS",
+        "mission_id": "MISSION_01_T3_ZIGZAG_SEARCH_1",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 35.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_05_T2_SYNC_SENSOR_FAIL_5",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.47577963246839,
-        "issues": []
+        "efficiency_prediction": "High",
+        "score": 84.93543776903705,
+        "issues": [
+          "GPS drift detected (4 points)"
+        ]
       },
       {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_FORMATION",
+        "mission_id": "MISSION_02_T3_ZIGZAG_SEARCH_2",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 35.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_03_T3_ZIGZAG_SEARCH_3",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 35.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_06_T2_SYNC_SENSOR_FAIL_6",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.65766650360723,
-        "issues": []
+        "efficiency_prediction": "High",
+        "score": 84.95001597726421,
+        "issues": [
+          "GPS drift detected (4 points)"
+        ]
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_FORMATION",
+        "mission_id": "MISSION_04_T3_ZIGZAG_SEARCH_4",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 35.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_05_T3_ZIGZAG_SEARCH_5",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 35.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_06_T3_ZIGZAG_SEARCH_6",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 35.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T4_CASCADE_FAILURE_1",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.6614626394701,
+        "efficiency_prediction": "High",
+        "score": 84.66160819186834,
         "issues": []
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_GPS_DRIFT",
+        "mission_id": "MISSION_02_T4_CASCADE_FAILURE_2",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.6614626394701,
+        "efficiency_prediction": "High",
+        "score": 84.67315431991813,
         "issues": []
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_05_T4_CASCADE_FAILURE_5",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 84.23668465587649,
+        "efficiency_prediction": "High",
+        "score": 84.68460576616812,
         "issues": []
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 57.48726070013478,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_GAPS",
+        "mission_id": "MISSION_04_T4_CASCADE_FAILURE_4",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.48057986590435,
+        "efficiency_prediction": "High",
+        "score": 84.6705848557129,
         "issues": []
       },
       {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 57.45885437890641,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_01_T5_SPLIT_FORMATION_1",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 84.23603266059712,
+        "efficiency_prediction": "High",
+        "score": 84.94968298337545,
         "issues": []
       },
       {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_GAPS",
+        "mission_id": "MISSION_03_T4_CASCADE_FAILURE_3",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.4870393508742,
+        "efficiency_prediction": "High",
+        "score": 84.68174626888045,
         "issues": []
       },
       {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_GPS_DRIFT",
+        "mission_id": "MISSION_06_T4_CASCADE_FAILURE_6",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.6572903164278,
+        "efficiency_prediction": "High",
+        "score": 84.68900929519091,
         "issues": []
       },
       {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_FORMATION",
+        "mission_id": "MISSION_02_T5_SPLIT_FORMATION_2",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.6572903164278,
+        "efficiency_prediction": "High",
+        "score": 84.94941929981267,
         "issues": []
       },
       {
-        "mission_id": "MISSION_01_SURVEILLANCE",
+        "mission_id": "MISSION_03_T5_SPLIT_FORMATION_3",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.63735715072681,
+        "efficiency_prediction": "High",
+        "score": 84.9540397602329,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE",
+        "mission_id": "MISSION_04_T5_SPLIT_FORMATION_4",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.64906501519252,
+        "efficiency_prediction": "High",
+        "score": 84.96432869091362,
         "issues": []
       },
       {
-        "mission_id": "MISSION_03_SURVEILLANCE",
+        "mission_id": "MISSION_05_T5_SPLIT_FORMATION_5",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.65766650360723,
+        "efficiency_prediction": "High",
+        "score": 84.95291005547243,
         "issues": []
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE",
+        "mission_id": "MISSION_06_T5_SPLIT_FORMATION_6",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.6614626394701,
+        "efficiency_prediction": "High",
+        "score": 84.94044648915569,
         "issues": []
       },
       {
-        "mission_id": "MISSION_05_SURVEILLANCE",
+        "mission_id": "MISSION_02_T6_ENDGAME_CRISIS_2",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 83.6572903164278,
+        "efficiency_prediction": "High",
+        "score": 84.95343236074768,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_01_T6_ENDGAME_CRISIS_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.94621832878836,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T6_ENDGAME_CRISIS_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.94607358890634,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T6_ENDGAME_CRISIS_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.95236594256605,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T6_ENDGAME_CRISIS_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.94875075444719,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T6_ENDGAME_CRISIS_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.95538795451431,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_01_T7_GHOST_SENSOR_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.95536004214148,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T7_GHOST_SENSOR_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.95610953507918,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T7_GHOST_SENSOR_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.94574665064329,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T7_GHOST_SENSOR_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.95751687682153,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_01_T8_NEAR_MISS_RECOVERY_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.96177910414617,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T7_GHOST_SENSOR_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.93952617387643,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T7_GHOST_SENSOR_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.93558839989761,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T8_NEAR_MISS_RECOVERY_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.94203334986103,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T8_NEAR_MISS_RECOVERY_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.95630858774021,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T8_NEAR_MISS_RECOVERY_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.95489596095895,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T8_NEAR_MISS_RECOVERY_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.93693800833623,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T8_NEAR_MISS_RECOVERY_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 84.92847823763307,
         "issues": []
       }
     ],
     "Fixed-Weight": [
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_AMBIGUOUS",
+        "mission_id": "MISSION_04_T1_DECEPTIVE_AVGS_4",
         "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 62.45069132916758,
+        "efficiency_prediction": "High",
+        "score": 67.82239193764879,
         "issues": [
-          "Close formation detected (min distance: 1.3m)"
+          "Close formation detected (min distance: 0.1m)"
         ]
       },
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_GPS_DRIFT",
+        "mission_id": "MISSION_02_T1_DECEPTIVE_AVGS_2",
         "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 64.11250772808842,
+        "efficiency_prediction": "High",
+        "score": 67.85345012396658,
         "issues": [
-          "GPS drift detected (12 points, 1 drones)",
-          "Close formation detected (min distance: 1.3m)"
+          "Close formation detected (min distance: 0.1m)"
         ]
       },
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_FORMATION",
+        "mission_id": "MISSION_03_T1_DECEPTIVE_AVGS_3",
         "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 64.66102795895235,
+        "efficiency_prediction": "High",
+        "score": 67.86434915078429,
         "issues": [
-          "Close formation detected (min distance: 1.0m)"
+          "Close formation detected (min distance: 0.1m)"
         ]
       },
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_01_T1_DECEPTIVE_AVGS_1",
         "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 65.30107081703515,
+        "efficiency_prediction": "High",
+        "score": 67.78299140437728,
         "issues": [
-          "Close formation detected (min distance: 0.2m)"
+          "Close formation detected (min distance: 0.1m)"
         ]
       },
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_GAPS",
+        "mission_id": "MISSION_05_T1_DECEPTIVE_AVGS_5",
         "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 59.53550695086791,
+        "efficiency_prediction": "High",
+        "score": 67.74595158599374,
         "issues": [
-          "Close formation detected (min distance: 1.3m)"
+          "Close formation detected (min distance: 0.1m)"
         ]
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_FORMATION",
+        "mission_id": "MISSION_06_T1_DECEPTIVE_AVGS_6",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 67.98508120543889,
+        "issues": [
+          "Close formation detected (min distance: 0.1m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T2_SYNC_SENSOR_FAIL_1",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 84.24989454300491,
+        "efficiency_prediction": "High",
+        "score": 77.97381452870245,
+        "issues": [
+          "GPS drift detected (16 points, 4 drones)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_02_T2_SYNC_SENSOR_FAIL_2",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 67.77303437025526,
+        "issues": [
+          "GPS drift detected (16 points, 4 drones)",
+          "Close formation detected (min distance: 19.8m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_03_T2_SYNC_SENSOR_FAIL_3",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 67.74675744735856,
+        "issues": [
+          "GPS drift detected (16 points, 4 drones)",
+          "Close formation detected (min distance: 12.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_04_T2_SYNC_SENSOR_FAIL_4",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 67.49577347504196,
+        "issues": [
+          "GPS drift detected (16 points, 4 drones)",
+          "Close formation detected (min distance: 12.8m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_03_T3_ZIGZAG_SEARCH_3",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 53.28369859298009,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_02_T3_ZIGZAG_SEARCH_2",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 53.28363952451261,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_06_T2_SYNC_SENSOR_FAIL_6",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 67.78009899831508,
+        "issues": [
+          "GPS drift detected (16 points, 4 drones)",
+          "Close formation detected (min distance: 17.4m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_05_T2_SYNC_SENSOR_FAIL_5",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 67.68355891307964,
+        "issues": [
+          "GPS drift detected (16 points, 4 drones)",
+          "Close formation detected (min distance: 18.5m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T3_ZIGZAG_SEARCH_1",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 53.283463232836326,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_04_T3_ZIGZAG_SEARCH_4",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 53.2836508126903,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_05_T3_ZIGZAG_SEARCH_5",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 53.28317622131702,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_06_T3_ZIGZAG_SEARCH_6",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 53.28403018493941,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T4_CASCADE_FAILURE_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 76.67125029363096,
+        "issues": [
+          "GPS drift detected (3 points, 1 drones)",
+          "Close formation detected (min distance: 12.0m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_02_T4_CASCADE_FAILURE_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 86.89813546101607,
+        "issues": [
+          "GPS drift detected (3 points, 1 drones)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_04_T4_CASCADE_FAILURE_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 76.70945145711119,
+        "issues": [
+          "GPS drift detected (3 points, 1 drones)",
+          "Close formation detected (min distance: 16.9m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_06_T4_CASCADE_FAILURE_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 76.77319910997146,
+        "issues": [
+          "GPS drift detected (3 points, 1 drones)",
+          "Close formation detected (min distance: 14.3m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_05_T4_CASCADE_FAILURE_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 86.91226728662892,
+        "issues": [
+          "GPS drift detected (3 points, 1 drones)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_03_T4_CASCADE_FAILURE_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 86.99637288867831,
+        "issues": [
+          "GPS drift detected (3 points, 1 drones)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T5_SPLIT_FORMATION_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 85.1828402750171,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_GPS_DRIFT",
+        "mission_id": "MISSION_02_T5_SPLIT_FORMATION_2",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 84.10453975040886,
-        "issues": [
-          "GPS drift detected (6 points, 1 drones)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_CONFLICT",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 64.66613996394805,
-        "issues": [
-          "Close formation detected (min distance: 0.2m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 80.7234329582289,
+        "efficiency_prediction": "High",
+        "score": 85.2837529536574,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_GAPS",
+        "mission_id": "MISSION_03_T5_SPLIT_FORMATION_3",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 79.15216168609068,
+        "efficiency_prediction": "High",
+        "score": 85.24522544884746,
         "issues": []
       },
       {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 56.65095189216258,
-        "issues": [
-          "Poor formation stability (score: 38.6)",
-          "GPS drift detected (14 points, 1 drones)",
-          "Close formation detected (min distance: 1.3m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_FORMATION",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 63.972165544766156,
-        "issues": [
-          "Close formation detected (min distance: 1.1m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_CONFLICT",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 64.45412329183871,
-        "issues": [
-          "Close formation detected (min distance: 0.2m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 60.37977578708845,
-        "issues": [
-          "Close formation detected (min distance: 1.3m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_GAPS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 58.867294463972556,
-        "issues": [
-          "Close formation detected (min distance: 1.3m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_FORMATION",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 64.06984238459849,
-        "issues": [
-          "Close formation detected (min distance: 0.9m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 62.97918693701689,
-        "issues": [
-          "GPS drift detected (6 points, 1 drones)",
-          "Close formation detected (min distance: 1.3m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_CONFLICT",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 64.44867405895779,
-        "issues": [
-          "Close formation detected (min distance: 0.2m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 60.375647326733215,
-        "issues": [
-          "Close formation detected (min distance: 1.3m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_GAPS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 58.86395802278068,
-        "issues": [
-          "Close formation detected (min distance: 1.3m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 60.80089529650985,
-        "issues": [
-          "Close formation detected (min distance: 5.1m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 63.08788791567747,
-        "issues": [
-          "GPS drift detected (11 points, 1 drones)",
-          "Close formation detected (min distance: 5.1m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_CONFLICT",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 63.63349147079441,
-        "issues": [
-          "Close formation detected (min distance: 0.2m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_FORMATION",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 63.032228326166575,
-        "issues": [
-          "Close formation detected (min distance: 2.4m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_GAPS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 57.91966270771084,
-        "issues": [
-          "Close formation detected (min distance: 5.1m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_01_SURVEILLANCE",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 64.682958292225,
-        "issues": [
-          "Close formation detected (min distance: 1.3m)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_02_SURVEILLANCE",
+        "mission_id": "MISSION_04_T5_SPLIT_FORMATION_4",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 84.25874704679627,
+        "efficiency_prediction": "High",
+        "score": 85.23727007501854,
         "issues": []
       },
       {
-        "mission_id": "MISSION_03_SURVEILLANCE",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 63.910161165658735,
+        "mission_id": "MISSION_05_T5_SPLIT_FORMATION_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 85.2606416490917,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T5_SPLIT_FORMATION_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 85.28099177659772,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T6_ENDGAME_CRISIS_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.80458725231844,
         "issues": [
-          "Close formation detected (min distance: 1.3m)"
+          "Close formation detected (min distance: 12.9m)"
         ]
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 63.905776698467704,
+        "mission_id": "MISSION_03_T6_ENDGAME_CRISIS_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.62418435809111,
         "issues": [
-          "Close formation detected (min distance: 1.3m)"
+          "Close formation detected (min distance: 12.9m)"
         ]
       },
       {
-        "mission_id": "MISSION_05_SURVEILLANCE",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Low",
-        "score": 63.0232371341023,
+        "mission_id": "MISSION_02_T6_ENDGAME_CRISIS_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.74015007841308,
         "issues": [
-          "Close formation detected (min distance: 5.1m)"
+          "Close formation detected (min distance: 12.9m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_05_T6_ENDGAME_CRISIS_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.42565733062904,
+        "issues": [
+          "Close formation detected (min distance: 12.9m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T6_ENDGAME_CRISIS_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.7020512879464,
+        "issues": [
+          "Close formation detected (min distance: 12.9m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_06_T6_ENDGAME_CRISIS_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.87826919142425,
+        "issues": [
+          "Close formation detected (min distance: 12.9m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T7_GHOST_SENSOR_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 80.9894432415798,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T7_GHOST_SENSOR_2",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 70.8277300784775,
+        "issues": [
+          "Close formation detected (min distance: 19.4m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_03_T7_GHOST_SENSOR_3",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 70.11129680475221,
+        "issues": [
+          "Close formation detected (min distance: 13.9m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_04_T7_GHOST_SENSOR_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 80.75235367081784,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_01_T8_NEAR_MISS_RECOVERY_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.87791947061999,
+        "issues": [
+          "Close formation detected (min distance: 12.0m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_02_T8_NEAR_MISS_RECOVERY_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.7433505393638,
+        "issues": [
+          "Close formation detected (min distance: 12.0m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_05_T7_GHOST_SENSOR_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 80.56114068381697,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T8_NEAR_MISS_RECOVERY_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.37026330804758,
+        "issues": [
+          "Close formation detected (min distance: 12.0m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_06_T7_GHOST_SENSOR_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 80.81257174915145,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T8_NEAR_MISS_RECOVERY_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.5643605988016,
+        "issues": [
+          "Close formation detected (min distance: 12.0m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_05_T8_NEAR_MISS_RECOVERY_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.61390303113495,
+        "issues": [
+          "Close formation detected (min distance: 12.0m)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_06_T8_NEAR_MISS_RECOVERY_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 77.82832851937023,
+        "issues": [
+          "Close formation detected (min distance: 12.0m)"
         ]
       }
     ],
     "Single-Agent-LLM": [
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_GAPS",
+        "mission_id": "MISSION_03_T1_DECEPTIVE_AVGS_3",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 92.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_CONFLICT",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 50.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_FORMATION",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 90.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_FORMATION",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
         "score": 98.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_02_T1_DECEPTIVE_AVGS_2",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 50.0,
+        "efficiency_prediction": "High",
+        "score": 100.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_AMBIGUOUS",
+        "mission_id": "MISSION_01_T1_DECEPTIVE_AVGS_1",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 90.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_GAPS",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_CONFLICT",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_FORMATION",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 97.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_FORMATION",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
         "score": 98.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_GAPS",
+        "mission_id": "MISSION_05_T1_DECEPTIVE_AVGS_5",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
+        "score": 98.5,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T1_DECEPTIVE_AVGS_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
         "score": 98.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_GPS_DRIFT",
+        "mission_id": "MISSION_01_T2_SYNC_SENSOR_FAIL_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 99.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T2_SYNC_SENSOR_FAIL_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T2_SYNC_SENSOR_FAIL_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T1_DECEPTIVE_AVGS_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T2_SYNC_SENSOR_FAIL_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T2_SYNC_SENSOR_FAIL_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T3_ZIGZAG_SEARCH_2",
         "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
+        "efficiency_prediction": "Medium",
+        "score": 50.0,
         "issues": [
-          "Poor formation stability (score: 38.6)"
+          "Sharp heading changes detected (avg: 120.0°)"
         ]
       },
       {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_AMBIGUOUS",
+        "mission_id": "MISSION_05_T2_SYNC_SENSOR_FAIL_5",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T3_ZIGZAG_SEARCH_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "Medium",
+        "score": 85.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_05_T3_ZIGZAG_SEARCH_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "Medium",
+        "score": 90.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T3_ZIGZAG_SEARCH_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "Medium",
+        "score": 85.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T4_CASCADE_FAILURE_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T4_CASCADE_FAILURE_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T3_ZIGZAG_SEARCH_3",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T3_ZIGZAG_SEARCH_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 85.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_03_T4_CASCADE_FAILURE_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_01_T5_SPLIT_FORMATION_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T4_CASCADE_FAILURE_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T4_CASCADE_FAILURE_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
         "score": 95.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_GPS_DRIFT",
+        "mission_id": "MISSION_04_T4_CASCADE_FAILURE_4",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T5_SPLIT_FORMATION_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
         "score": 95.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_03_T5_SPLIT_FORMATION_3",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T5_SPLIT_FORMATION_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T5_SPLIT_FORMATION_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 100.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T5_SPLIT_FORMATION_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T6_ENDGAME_CRISIS_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T6_ENDGAME_CRISIS_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_01_T6_ENDGAME_CRISIS_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T6_ENDGAME_CRISIS_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T6_ENDGAME_CRISIS_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T6_ENDGAME_CRISIS_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T7_GHOST_SENSOR_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_01_T7_GHOST_SENSOR_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T7_GHOST_SENSOR_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
         "score": 97.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_AMBIGUOUS",
+        "mission_id": "MISSION_04_T7_GHOST_SENSOR_4",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 50.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_GAPS",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
         "score": 98.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_FORMATION",
+        "mission_id": "MISSION_01_T8_NEAR_MISS_RECOVERY_1",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_GAPS",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_02_SURVEILLANCE",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 92.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_01_SURVEILLANCE",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 50.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_CONFLICT",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 50.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 90.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
         "score": 98.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_05_SURVEILLANCE",
+        "mission_id": "MISSION_03_T8_NEAR_MISS_RECOVERY_3",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T7_GHOST_SENSOR_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
         "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T7_GHOST_SENSOR_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T8_NEAR_MISS_RECOVERY_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T8_NEAR_MISS_RECOVERY_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T8_NEAR_MISS_RECOVERY_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 100.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T8_NEAR_MISS_RECOVERY_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 99.0,
         "issues": []
       }
     ],
     "Multi-Agent-Debate": [
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_03_T1_DECEPTIVE_AVGS_3",
         "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 95.0,
+        "efficiency_prediction": "High",
+        "score": 97.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_06_T1_DECEPTIVE_AVGS_6",
         "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 94.0,
+        "efficiency_prediction": "High",
+        "score": 98.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 91.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 20.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_FORMATION",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "mission_id": "MISSION_02_T2_SYNC_SENSOR_FAIL_2",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
         "score": 50.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_GAPS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Medium",
-        "score": 50,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 94.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_01_SURVEILLANCE_HARD_FORMATION",
+        "mission_id": "MISSION_01_T2_SYNC_SENSOR_FAIL_1",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 94.0,
+        "efficiency_prediction": "High",
+        "score": 98.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_GAPS",
+        "mission_id": "MISSION_01_T1_DECEPTIVE_AVGS_1",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 97.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T2_SYNC_SENSOR_FAIL_3",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 94.0,
+        "efficiency_prediction": "High",
+        "score": 97.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 94.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_CONFLICT",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Medium",
-        "score": 50,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Borderline",
-        "efficiency_prediction": "Medium",
-        "score": 50,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_05_T1_DECEPTIVE_AVGS_5",
         "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 94.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 89.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_FORMATION",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 93.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 86.0,
-        "issues": [
-          "Poor formation stability (score: 38.6)"
-        ]
-      },
-      {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_GAPS",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
         "score": 50.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 50.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_FORMATION",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 93.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE_HARD_GAPS",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 70.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_AMBIGUOUS",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "mission_id": "MISSION_04_T2_SYNC_SENSOR_FAIL_4",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
         "score": 90.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_CONFLICT",
+        "mission_id": "MISSION_04_T1_DECEPTIVE_AVGS_4",
         "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 50.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T1_DECEPTIVE_AVGS_2",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 97.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T3_ZIGZAG_SEARCH_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "Medium",
+        "score": 78.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_05_T2_SYNC_SENSOR_FAIL_5",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 77.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T3_ZIGZAG_SEARCH_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "Medium",
+        "score": 78.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T3_ZIGZAG_SEARCH_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 78.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_02_T3_ZIGZAG_SEARCH_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "Medium",
+        "score": 78.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_06_T2_SYNC_SENSOR_FAIL_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 97.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T3_ZIGZAG_SEARCH_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "Medium",
+        "score": 78.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_06_T3_ZIGZAG_SEARCH_6",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 58.0,
+        "issues": [
+          "Sharp heading changes detected (avg: 120.0°)"
+        ]
+      },
+      {
+        "mission_id": "MISSION_01_T4_CASCADE_FAILURE_1",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 30.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T4_CASCADE_FAILURE_2",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 98.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T4_CASCADE_FAILURE_6",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 96.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T4_CASCADE_FAILURE_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 96.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T4_CASCADE_FAILURE_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 96.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_01_T5_SPLIT_FORMATION_1",
+        "prediction": "Borderline",
+        "efficiency_prediction": "Medium",
+        "score": 50.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T4_CASCADE_FAILURE_3",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 96.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T5_SPLIT_FORMATION_3",
+        "prediction": "Borderline",
         "efficiency_prediction": "Low",
         "score": 50.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_GAPS",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 92.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_GPS_DRIFT",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 92.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE_HARD_FORMATION",
+        "mission_id": "MISSION_05_T5_SPLIT_FORMATION_5",
         "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 92.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_03_SURVEILLANCE",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
-        "score": 93.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_01_SURVEILLANCE",
-        "prediction": "Borderline",
         "efficiency_prediction": "Medium",
-        "score": 50,
+        "score": 58.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_02_SURVEILLANCE",
+        "mission_id": "MISSION_06_T5_SPLIT_FORMATION_6",
         "prediction": "Safe",
-        "efficiency_prediction": "Low",
+        "efficiency_prediction": "High",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T5_SPLIT_FORMATION_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T5_SPLIT_FORMATION_2",
+        "prediction": "Risky",
+        "efficiency_prediction": "Medium",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T6_ENDGAME_CRISIS_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 97.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_01_T6_ENDGAME_CRISIS_1",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 50.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T6_ENDGAME_CRISIS_5",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 97.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T6_ENDGAME_CRISIS_2",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 50.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T6_ENDGAME_CRISIS_6",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 97.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_01_T7_GHOST_SENSOR_1",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 92.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T7_GHOST_SENSOR_4",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 50.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T7_GHOST_SENSOR_3",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 50.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T7_GHOST_SENSOR_2",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 95.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T6_ENDGAME_CRISIS_3",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 77.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_04_T8_NEAR_MISS_RECOVERY_4",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 80.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T8_NEAR_MISS_RECOVERY_6",
+        "prediction": "Safe",
+        "efficiency_prediction": "High",
+        "score": 97.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T8_NEAR_MISS_RECOVERY_5",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 50.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_06_T7_GHOST_SENSOR_6",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
+        "score": 90.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_03_T8_NEAR_MISS_RECOVERY_3",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 80.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_02_T8_NEAR_MISS_RECOVERY_2",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
+        "score": 80.0,
+        "issues": []
+      },
+      {
+        "mission_id": "MISSION_05_T7_GHOST_SENSOR_5",
+        "prediction": "Risky",
+        "efficiency_prediction": "High",
         "score": 94.0,
         "issues": []
       },
       {
-        "mission_id": "MISSION_04_SURVEILLANCE",
-        "prediction": "Risky",
-        "efficiency_prediction": "Low",
+        "mission_id": "MISSION_01_T8_NEAR_MISS_RECOVERY_1",
+        "prediction": "Borderline",
+        "efficiency_prediction": "High",
         "score": 50.0,
-        "issues": []
-      },
-      {
-        "mission_id": "MISSION_05_SURVEILLANCE",
-        "prediction": "Safe",
-        "efficiency_prediction": "Low",
-        "score": 92.0,
         "issues": []
       }
     ]
   },
   "metrics": {
     "Single-Metric": {
-      "accuracy": 0.3,
-      "precision": 0.17333333333333334,
-      "recall": 0.3,
-      "f1_score": 0.19682539682539682,
-      "weighted_precision": 0.17333333333333334,
-      "weighted_recall": 0.3,
-      "weighted_f1": 0.19682539682539682,
+      "accuracy": 0.041666666666666664,
+      "precision": 0.06349206349206349,
+      "recall": 0.06944444444444443,
+      "f1_score": 0.036111111111111115,
+      "weighted_precision": 0.08630952380952382,
+      "weighted_recall": 0.041666666666666664,
+      "weighted_f1": 0.03854166666666667,
       "per_class": {
         "Safe": {
-          "precision": 0.32,
-          "recall": 0.8,
-          "f1": 0.45714285714285713,
-          "support": 10
+          "precision": 0.023809523809523808,
+          "recall": 0.16666666666666666,
+          "f1": 0.041666666666666664,
+          "support": 6
         },
         "Borderline": {
-          "precision": 0.2,
-          "recall": 0.1,
-          "f1": 0.13333333333333333,
-          "support": 10
-        },
-        "Risky": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 10
+          "support": 18
+        },
+        "Risky": {
+          "precision": 0.16666666666666666,
+          "recall": 0.041666666666666664,
+          "f1": 0.06666666666666667,
+          "support": 24
         }
       },
-      "human_agreement_kappa": -0.036363636363636154,
-      "efficiency_accuracy": 0.0
+      "human_agreement_kappa": -0.22666666666666657,
+      "efficiency_accuracy": 0.25
     },
     "Fixed-Weight": {
-      "accuracy": 0.3333333333333333,
-      "precision": 0.24,
-      "recall": 0.3333333333333333,
-      "f1_score": 0.24126984126984127,
-      "weighted_precision": 0.24000000000000002,
-      "weighted_recall": 0.3333333333333333,
-      "weighted_f1": 0.24126984126984125,
+      "accuracy": 0.041666666666666664,
+      "precision": 0.1111111111111111,
+      "recall": 0.027777777777777776,
+      "f1_score": 0.044444444444444446,
+      "weighted_precision": 0.16666666666666666,
+      "weighted_recall": 0.041666666666666664,
+      "weighted_f1": 0.06666666666666667,
       "per_class": {
         "Safe": {
-          "precision": 0.4,
-          "recall": 0.2,
-          "f1": 0.26666666666666666,
-          "support": 10
-        },
-        "Borderline": {
-          "precision": 0.32,
-          "recall": 0.8,
-          "f1": 0.45714285714285713,
-          "support": 10
-        },
-        "Risky": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 10
+          "support": 6
+        },
+        "Borderline": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 18
+        },
+        "Risky": {
+          "precision": 0.3333333333333333,
+          "recall": 0.08333333333333333,
+          "f1": 0.13333333333333333,
+          "support": 24
         }
       },
-      "human_agreement_kappa": 0.05714285714285727,
-      "efficiency_accuracy": 0.0
+      "human_agreement_kappa": -0.26126126126126126,
+      "efficiency_accuracy": 0.25
     },
     "Single-Agent-LLM": {
-      "accuracy": 0.3333333333333333,
-      "precision": 0.1149425287356322,
-      "recall": 0.3333333333333333,
-      "f1_score": 0.17094017094017092,
-      "weighted_precision": 0.1149425287356322,
-      "weighted_recall": 0.3333333333333333,
-      "weighted_f1": 0.17094017094017092,
+      "accuracy": 0.16666666666666666,
+      "precision": 0.7101449275362318,
+      "recall": 0.36574074074074076,
+      "f1_score": 0.1386774628879892,
+      "weighted_precision": 0.8913043478260869,
+      "weighted_recall": 0.16666666666666666,
+      "weighted_f1": 0.10831983805668016,
       "per_class": {
         "Safe": {
-          "precision": 0.3448275862068966,
+          "precision": 0.13043478260869565,
           "recall": 1.0,
-          "f1": 0.5128205128205128,
-          "support": 10
+          "f1": 0.23076923076923078,
+          "support": 6
         },
         "Borderline": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "support": 10
+          "precision": 1.0,
+          "recall": 0.05555555555555555,
+          "f1": 0.10526315789473684,
+          "support": 18
         },
         "Risky": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
-          "support": 10
+          "precision": 1.0,
+          "recall": 0.041666666666666664,
+          "f1": 0.08,
+          "support": 24
         }
       },
-      "human_agreement_kappa": 0.03389830508474567,
-      "efficiency_accuracy": 0.0
+      "human_agreement_kappa": 0.012345679012345734,
+      "efficiency_accuracy": 0.3333333333333333
     },
     "Multi-Agent-Debate": {
-      "accuracy": 0.43333333333333335,
-      "precision": 0.44871794871794873,
-      "recall": 0.43333333333333335,
-      "f1_score": 0.41407867494824013,
-      "weighted_precision": 0.4487179487179488,
-      "weighted_recall": 0.43333333333333335,
-      "weighted_f1": 0.41407867494824013,
+      "accuracy": 0.5208333333333334,
+      "precision": 0.5491228070175439,
+      "recall": 0.5879629629629629,
+      "f1_score": 0.5015503875968993,
+      "weighted_precision": 0.6375000000000001,
+      "weighted_recall": 0.5208333333333334,
+      "weighted_f1": 0.5398255813953489,
       "per_class": {
         "Safe": {
-          "precision": 0.46153846153846156,
-          "recall": 0.6,
-          "f1": 0.5217391304347826,
-          "support": 10
+          "precision": 0.2631578947368421,
+          "recall": 0.8333333333333334,
+          "f1": 0.4,
+          "support": 6
         },
         "Borderline": {
-          "precision": 0.5,
-          "recall": 0.2,
-          "f1": 0.2857142857142857,
-          "support": 10
+          "precision": 0.7,
+          "recall": 0.3888888888888889,
+          "f1": 0.5,
+          "support": 18
         },
         "Risky": {
-          "precision": 0.38461538461538464,
-          "recall": 0.5,
-          "f1": 0.43478260869565216,
-          "support": 10
+          "precision": 0.6842105263157895,
+          "recall": 0.5416666666666666,
+          "f1": 0.6046511627906976,
+          "support": 24
         }
       },
-      "human_agreement_kappa": 0.2325581395348837,
-      "efficiency_accuracy": 0.0
+      "human_agreement_kappa": 0.2592592592592593,
+      "efficiency_accuracy": 0.375
     }
   }
 }
